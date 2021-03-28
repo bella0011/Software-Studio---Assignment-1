@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.809.2
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6A62F9C8-2673-45F4-8233-99A92A9E59F8}"
+	ProjectSection(SolutionItems) = preProject
+		package.json = package.json
+		server.js = server.js
+		.env = .env
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "views", "views", "{015C8D2B-3469-4ECC-B524-29D4DEC8908F}"
+	ProjectSection(SolutionItems) = preProject
+		views\index.ejs = views\index.ejs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "public", "public", "{BD3AC5A6-F666-40A0-8B77-C3E69E666A40}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "routes", "routes", "{4F15AA8B-E096-4EFE-9ADF-5A52AF313405}"
+	ProjectSection(SolutionItems) = preProject
+		routes\index.js = routes\index.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "models", "models", "{40A956FC-6D4D-4B3C-9B18-6D13D7F4328A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "layouts", "layouts", "{D743EE54-5FF3-4DA0-AC95-82F2F3D7B201}"
+	ProjectSection(SolutionItems) = preProject
+		views\layouts\layout.ejs = views\layouts\layout.ejs
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6BA478C7-F731-4310-A323-C7F2F24D62D4}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{015C8D2B-3469-4ECC-B524-29D4DEC8908F} = {6A62F9C8-2673-45F4-8233-99A92A9E59F8}
+		{BD3AC5A6-F666-40A0-8B77-C3E69E666A40} = {6A62F9C8-2673-45F4-8233-99A92A9E59F8}
+		{4F15AA8B-E096-4EFE-9ADF-5A52AF313405} = {6A62F9C8-2673-45F4-8233-99A92A9E59F8}
+		{40A956FC-6D4D-4B3C-9B18-6D13D7F4328A} = {6A62F9C8-2673-45F4-8233-99A92A9E59F8}
+		{D743EE54-5FF3-4DA0-AC95-82F2F3D7B201} = {015C8D2B-3469-4ECC-B524-29D4DEC8908F}
+	EndGlobalSection
+EndGlobal
