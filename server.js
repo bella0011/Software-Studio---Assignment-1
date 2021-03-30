@@ -20,6 +20,16 @@ const db = mongoose.connection
 db.on('error', error => console.error(error))
 db.once('open', () => console.log('Connected to Mongoose'))
 
+
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://eLibrary:SES1AG4@cluster0.ocp4f.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+client.connect(err => {
+    const collection = client.db("test").collection("devices");
+    // perform actions on the collection object
+    client.close();
+});
+
 app.use('/', indexRouter)
 
 app.listen(process.env.PORT || 3000) 
