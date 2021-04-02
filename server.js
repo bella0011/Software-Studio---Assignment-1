@@ -7,6 +7,7 @@ const app = express()
 const expressLayouts = require('express-ejs-layouts')
 
 const indexRouter = require('./routes/index')
+const bookRouter = require('./routes/books')
 
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
@@ -31,5 +32,6 @@ client.connect(err => {
 });
 
 app.use('/', indexRouter)
+app.use('/books', bookRouter)
 
 app.listen(process.env.PORT || 3000) 
