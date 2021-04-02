@@ -39,6 +39,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "partials", "partials", "{67
 		views\partials\header.ejs = views\partials\header.ejs
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "books", "books", "{C55AAF02-C0F6-41FE-B9C1-F6A12E8CDB83}"
+	ProjectSection(SolutionItems) = preProject
+		views\books\new.ejs = views\books\new.ejs
+		views\books\_form_fields.ejs = views\books\_form_fields.ejs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 	EndGlobalSection
@@ -57,5 +63,6 @@ Global
 		{40A956FC-6D4D-4B3C-9B18-6D13D7F4328A} = {6A62F9C8-2673-45F4-8233-99A92A9E59F8}
 		{D743EE54-5FF3-4DA0-AC95-82F2F3D7B201} = {015C8D2B-3469-4ECC-B524-29D4DEC8908F}
 		{67ED1161-7BAD-4B9E-A941-83292C4956BD} = {015C8D2B-3469-4ECC-B524-29D4DEC8908F}
+		{C55AAF02-C0F6-41FE-B9C1-F6A12E8CDB83} = {015C8D2B-3469-4ECC-B524-29D4DEC8908F}
 	EndGlobalSection
 EndGlobal
