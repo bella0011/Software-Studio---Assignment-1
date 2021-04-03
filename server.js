@@ -33,10 +33,11 @@ client.connect(err => {
     client.close();
 });
 
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+
 app.use('/', indexRouter)
 app.use('/books', bookRouter)
 app.use('/users', userRouter)
-
-
 
 app.listen(process.env.PORT || 3000) 
