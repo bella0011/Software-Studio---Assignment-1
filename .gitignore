@@ -405,5 +405,5 @@ ASALocalRun/
 .localhistory/
 
 
-.env
+*.env
 node_modules
