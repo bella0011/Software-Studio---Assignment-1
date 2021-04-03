@@ -1,23 +1,14 @@
-const express = require('express')
+const express = require('express');
 
-const router = express.Router()
+const router = express.Router();
 const User = require('../models/user')
 
-//Register Route
-router.get('/register', async (req, res) => {
-    try {
-        const user = new User()
-        res.render('users/register', {
-            user: user
-        })
-    } catch {
-        res.redirect('/users')
-    }
+//Register Page
+router.get('/register',(req, res) => res.render('users/register'));
+
+//Register Handle
+router.post('/register', (req, res) => {
+    res.send('pass')
 })
 
-//Create User Route
-router.post('/', async (req, res) => {
-
-})
-
-module.exports = router
+module.exports = router;

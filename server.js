@@ -24,6 +24,7 @@ db.once('open', () => console.log('Connected to Mongoose'))
 
 
 const MongoClient = require('mongodb').MongoClient;
+const bodyParser = require('body-parser')
 const uri = "mongodb+srv://eLibrary:SES1AG4@cluster0.ocp4f.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
@@ -35,5 +36,7 @@ client.connect(err => {
 app.use('/', indexRouter)
 app.use('/books', bookRouter)
 app.use('/users', userRouter)
+
+
 
 app.listen(process.env.PORT || 3000) 
