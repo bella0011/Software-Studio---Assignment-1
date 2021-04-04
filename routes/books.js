@@ -50,7 +50,7 @@ async function renderNewPage(res, book, hasError = false) {
         const params = {
             book: book
         }
-        if (hasError) params.errorMessage = "Error Creating Book"
+        if (hasError) params.errorMessage = 'Error Creating Book'
         res.render('books/new', params)
     } catch {
         res.redirect('/books')
