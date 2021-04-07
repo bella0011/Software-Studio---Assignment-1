@@ -52,7 +52,14 @@ router.post('/', async (req, res) => {
 
 })
 
-
+router.get('/:id', async (req, res) => {
+    try {
+        const book = await Book.findById(req.params.id)
+        res.render('books/show', {book : book})
+    } catch {
+        res.redirect('/')
+    }
+})
 
 async function renderNewPage(res, book, hasError = false) {
     try {
