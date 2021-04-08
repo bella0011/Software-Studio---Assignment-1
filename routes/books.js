@@ -74,7 +74,6 @@ router.get('/:id/edit', async (req, res) => {
 //Update Book Route
 router.put('/:id', async (req, res) => {
     let book 
-
     try {
         book = await Book.findById(req.params.id)
         book.title = req.body.title
@@ -87,7 +86,8 @@ router.put('/:id', async (req, res) => {
         }
         await book.save()
         res.redirect(`/books/${book.id}`)
-    } catch {
+    } catch (err) {
+        console.log(err)
         if (book != null) {
             renderEditPage(res, book, true)
         } else {
@@ -95,6 +95,25 @@ router.put('/:id', async (req, res) => {
         }
     }
 
+})
+
+//Delete Book Route
+router.delete('/:id', async (req, res) => {
+    let book
+    try {
+        book = await Book.findById(req.params.id)
+        await book.remove()
+        res.redirect('/books')
+    } catch {
+        if (book != null) {
+            res.render('books/show', {
+                book: book,
+                errorMessage: 'Could not remove book'
+            })
+        } else {
+            res.redirect('/')
+        }
+    }
 })
 
 async function renderNewPage(res, book, hasError = false) {
