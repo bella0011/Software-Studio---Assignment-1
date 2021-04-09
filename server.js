@@ -7,6 +7,9 @@ const app = express()
 const expressLayouts = require('express-ejs-layouts')
 const flash = require('connect-flash')
 const session = require('express-session')
+const passport = require('passport');
+
+require('./config/passport')(passport);
 
 const indexRouter = require('./routes/index')
 const bookRouter = require('./routes/books')
@@ -45,6 +48,10 @@ app.use(session ({
     saveUninitialized: true
 }))
 
+//_Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Connect Flash
 app.use(flash())
 
@@ -52,6 +59,7 @@ app.use(flash())
 app.use((req, res, next) => {
     res.locals.success_msg = req.flash('success_msg')
     res.locals.error_msg = req.flash('error_msg')
+    res.locals.error = req.flash('error')
     next()
 })
 
