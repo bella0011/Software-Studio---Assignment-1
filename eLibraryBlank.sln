@@ -37,12 +37,16 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "partials", "partials", "{67ED1161-7BAD-4B9E-A941-83292C4956BD}"
 	ProjectSection(SolutionItems) = preProject
 		views\partials\header.ejs = views\partials\header.ejs
+		views\partials\deleteForm.ejs = views\partials\deleteForm.ejs
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "books", "books", "{C55AAF02-C0F6-41FE-B9C1-F6A12E8CDB83}"
 	ProjectSection(SolutionItems) = preProject
 		views\books\new.ejs = views\books\new.ejs
 		views\books\_form_fields.ejs = views\books\_form_fields.ejs
+		views\books\show.ejs = views\books\show.ejs
+		views\books\index.ejs = views\books\index.ejs
+		views\books\edit.ejs = views\books\edit.ejs
 	EndProjectSection
 EndProject
 Global
