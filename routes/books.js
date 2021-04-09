@@ -75,7 +75,7 @@ router.get('/:id/edit', async (req, res) => {
 router.put('/:id', async (req, res) => {
     let book 
     try {
-        book = await Book.findById(req.params.id)
+        book = await Book.findById(req.params.id.trim())
         book.title = req.body.title
         book.author = req.body.author
         book.publishDate = new Date(req.body.publishDate)
