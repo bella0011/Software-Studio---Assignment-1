@@ -2,6 +2,7 @@
 const router = express.Router()
 const Book = require('../models/book')
 
+
 router.get('/', async (req, res) => {
     let books
     try {
@@ -9,7 +10,13 @@ router.get('/', async (req, res) => {
     } catch {
         books = []
     }
-    res.render('index', { books: books})
+    res.render('index', { books: books })
+
 })
+
+
+//Dashboard Page
+
+router.get('/dashboard', (req, res) => res.render('dashboard'))
 
 module.exports = router 
