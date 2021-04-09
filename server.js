@@ -5,11 +5,19 @@
 const express = require('express')
 const app = express()
 const expressLayouts = require('express-ejs-layouts')
+
+const flash = require('connect-flash')
+const session = require('express-session')
+const passport = require('passport');
+
+require('./config/passport')(passport);
+
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 
 const indexRouter = require('./routes/index')
 const bookRouter = require('./routes/books')
+const userRouter = require('./routes/users')
 
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
@@ -35,7 +43,33 @@ client.connect(err => {
     client.close();
 });
 
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// Express Session
+app.use(session ({
+    secret: 'keyboard cat',
+    resave: true,
+    saveUninitialized: true
+}))
+
+//_Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Connect Flash
+app.use(flash())
+
+//Global Variables
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash('success_msg')
+    res.locals.error_msg = req.flash('error_msg')
+    res.locals.error = req.flash('error')
+    next()
+})
+
 app.use('/', indexRouter)
 app.use('/books', bookRouter)
+app.use('/users', userRouter)
 
 app.listen(process.env.PORT || 3000) 
