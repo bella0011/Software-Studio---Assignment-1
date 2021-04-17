@@ -1,6 +1,4 @@
 
-<%- include ("../partials/messages") %>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -8,7 +6,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Register</title>
+    <title>Log-In</title>
     <style>
         *{
             padding: 0;
@@ -16,11 +14,60 @@
             box-sizing: border-box;
             font-size: 1em;
         }
+
+        /* NAVBAR BEGIN*/
+        nav{
+            background-color: #011936;
+            height: 82px;
+            width: 100%;
+
+        }
+        label.logo{
+            line-height: 80px;
+            padding: 0px 80px;
+
+        }
+        nav ul{
+            float: right;
+            margin-right: 20px
+        }
+        nav ul li{
+            display: inline-block;
+            line-height: 80px;
+            margin: 0 5px;
+        }
+        nav ul li a{
+            font-size: 17px;
+            color: white;
+            text-transform: uppercase;
+            padding: 7px 13px;
+            border-radius: 3px;
+            
+        }
+        
+        a.active, nav ul li a:hover{
+            background: #49cee8;
+            transition: 0.5s;
+            text-decoration: none;
+            color: white;
+        }
+        .checkbtn{
+            font-size: 30px;
+            color: white;
+            float: right;
+            line-height: 80px;
+            margin-right: 40px;
+            cursor: pointer;
+            display: none;
+        }
+        #check{
+            display: none;
+        }
         body{
             background: #F9DC5C;
         }
         .row{
-            background: #F4FFFD;
+            background: #f5f5f5;
             border-radius: 30px;
             box-shadow: 12px 12px 22px #465362;
         }
@@ -43,17 +90,63 @@
             border: 2px solid;
             color: rgb(0, 0, 0);
         }
+
+
+        @media (max-width: 952px){
+            label.logo{
+                font-size: 30px;
+                padding-left: 50px;
+            }
+            nav ul li a{
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 858px){
+            .checkbtn{
+                display: block;
+            }
+            ul{
+                position: fixed;
+                width: 100%;
+                height: 100vh;
+                background: #ED254E;
+                top: 80px;
+                left: -100%;
+                text-align: center;
+                transition: all .5s;
+                z-index: 10;
+            }
+            nav ul li{
+                display: block;
+                margin: 50px 0;
+                line-height: 30px;
+            }
+            nav ul li a{
+                font-size: 20px;
+            }
+            a:hover,a.active{
+                background-color: none;
+                color: darkslateblue;
+            }
+            #check:checked ~ ul{
+                left: 0;
+            }
+        }
+
+        /* NAVBAR END*/
+
     </style>
 </head>
 
 <body>
-    <section class="Form my-4 mx-5">
+    <section class="Form my-4 mx-5" style="padding-top: 15vh;">
         <div class="container">
 
 
             <div class="row no-gutters">
                 <div class="col-lg-5">
-                    <img src="logInImage.jpg" class="img-fluid" id="regImg" alt="Register-Image" width="100%">
+                    <img src="https://cdn.pixabay.com/photo/2019/03/18/15/23/fantasies-4063346_1280.jpg" class="img-fluid" id="logImg" alt="LogIn-Image" width="100%" >
                 </div>
 
                 <div class="col-lg-7 px-5 pt-5">
