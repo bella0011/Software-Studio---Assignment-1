@@ -1,5 +1,6 @@
 const express = require('express');
 
+const nodemailer = require('nodemailer');
 const router = express.Router();
 const User = require('../models/user')
 const bcrypt = require('bcryptjs');
@@ -56,6 +57,23 @@ router.post('/register', (req, res) => {
                     email: req.body.email,
                     password: req.body.password
                 })
+
+                let transporter = nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        user: process.env.EMAIL,
+                        pass: process.env.PASSWORD
+                    }
+                })
+
+                let mailOptions = {
+                    from: 'westernelibrary@gmail.com',
+                    to: req.body.email,
+                    subject: 'Confirmation Email',
+                    text: 'Email Confirmed'
+                }
+
+                transporter.sendMail(mailOptions);
 
                 // Hash Password
                 bcrypt.genSalt(10, (err, salt) => 
