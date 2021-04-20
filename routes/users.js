@@ -1,7 +1,7 @@
 const express = require('express');
-
+const nodemailer = require('nodemailer');
 const router = express.Router();
-const User = require('../models/user')
+const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const { forwardAuthenticated } = require('../config/auth');
@@ -55,6 +55,30 @@ router.post('/register', (req, res) => {
                     name: req.body.name,
                     email: req.body.email,
                     password: req.body.password
+                    
+                })
+                
+                let transporter = nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        user: process.env.EMAIL,
+                        pass: process.env.PASSWORD
+                    }
+                })
+
+                let mailOptions = {
+                    from: 'westernelibrary@gmail.com',
+                    to: req.body.email,
+                    subject: 'Confirmation Email',
+                    text: 'Email Confirmed'
+                }
+
+                transporter.sendMail(mailOptions, function(err, data) {
+                    if (err) {
+                        console.log('Error Occurs');
+                    } else {
+                        console.log('Email sent');
+                    }
                 })
 
                 // Hash Password
