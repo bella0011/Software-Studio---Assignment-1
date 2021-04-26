@@ -29,6 +29,7 @@ router.post('/register', (req, res) => {
         errors.push({ msg: 'Password do not match'})
     }
 
+    // Check Whether for requires not filled
     if(errors.length > 0) {
         res.render('users/register', {
             errors,
@@ -38,11 +39,12 @@ router.post('/register', (req, res) => {
             password2
         })
     } else {
+
         // Validation Passed
         User.findOne( {email: email})
         .then(user => {
             if(user) {
-                // User exists
+                // Check If User Exist
                 errors.push({ msg: 'Email is already registered'})
                 res.render('users/register', {
                     errors,
@@ -52,12 +54,14 @@ router.post('/register', (req, res) => {
                     password2
                 })
             } else {
+                // Add New User
                 const newUser = new User({
                     name: req.body.name,
                     email: req.body.email,
                     password: req.body.password
                 })
 
+                // Send Confirmation Email
                 let transporter = nodemailer.createTransport({
                     service: 'gmail',
                     auth: {
@@ -65,14 +69,12 @@ router.post('/register', (req, res) => {
                         pass: process.env.PASSWORD
                     }
                 })
-
                 let mailOptions = {
                     from: 'westernelibrary@gmail.com',
                     to: req.body.email,
                     subject: 'Confirmation Email',
                     text: 'Email Confirmed'
                 }
-
                 transporter.sendMail(mailOptions);
 
                 // Hash Password
