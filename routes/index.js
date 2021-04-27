@@ -1,7 +1,7 @@
 ﻿const express = require('express')
 const router = express.Router()
 const Book = require('../models/book')
-
+const { ensureAuthenticated } = require('../config/auth')
 
 router.get('/', async (req, res) => {
     let books
@@ -17,6 +17,9 @@ router.get('/', async (req, res) => {
 
 //Dashboard Page
 
-router.get('/dashboard', (req, res) => res.render('dashboard'))
+router.get('/dashboard', ensureAuthenticated,(req, res) => 
+res.render('dashboard', {
+    name: req.user.name
+}))
 
 module.exports = router 
