@@ -14,9 +14,6 @@ router.get('/login',(req, res) => res.render('users/login'));
 //Register Page
 router.get('/register',(req, res) => res.render('users/register'));
 
-//Fine Page
-router.get('/fines',(req, res) => res.render('users/fines'));
-
 //Register Handle
 router.post('/register', (req, res) => {
     const { name, email, password, password2 } = req.body;
