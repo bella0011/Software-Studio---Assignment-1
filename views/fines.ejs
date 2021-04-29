@@ -8,8 +8,9 @@
         <title>Fine's Table w/ Refresh</title>
     </head>
     <body>
-        <div class="table-refresh" data-data-url="/data">
-            <table class="table-refresh__table" data-data-url="/data">
+        <div class="table-refresh" data-url="/data">
+            <table class="table-refresh__table">
+                <!--
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -23,8 +24,20 @@
                         <td>too nice</td>
                         <td>11</td>
                     </tr>
+                    <tr>
+                        <td>Danny</td>
+                        <td>too nice</td>
+                        <td>11</td>
+                    </tr>
                 </tbody>
+                -->
             </table>
+            <div class="table-refresh__options">
+                <span class="table-refresh__table">Last Update: never</span>
+                <button type="button" class="table-refresh__button">
+                    <i class="material-icons">refresh</i>
+                </button>
+            </div>           
         </div>
         <script src="./src/app.js"></script>
     </body>
