@@ -11,12 +11,12 @@
         const data = await response.json();
         
         //Clear table
-        table.querySelector("thread tr").innerHTML = "";
+        table.querySelector("thead tr").innerHTML = "";
         table.querySelector("tbody").innerHTML = "";
 
         //Populate headers
         for(const header of data.headers) {
-            table.querySelector("thread tr").insertAdjacentHTML("beforeend", `<th>${ header }`);
+            table.querySelector("thead tr").insertAdjacentHTML("beforeend", `<th>${ header }</th>`);
         }
 
         //Populate rows
@@ -27,6 +27,11 @@
             </tr>
             `);
         }
+        //Update "last update" text
+        root.querySelector(".table-refresh__label").textContent = `Last Update: ${ new Date(data.lastUpdated).toLocaleString()}`;
+        
+        //Stop rotating
+        root.querySelector(".table-refresh__button").classList.remove("table-refresh__button--refreshing");
     }
 
     for (const root of document.querySelectorAll(".table-refresh[data-url]")) {
@@ -48,7 +53,7 @@
         `;
 
         options.innerHTML = `
-            <span class="table-fresh__label">Last Update: never</span>
+            <span class="table-refresh__label">Last Update: never</span>
             <button type="button" class="table-refresh__button">
                 <i class="material-icons">refresh</i>
             </button>
@@ -58,7 +63,7 @@
 
         options.querySelector(".table-refresh__button").addEventListener("click", () => {
             updateTable(root);
-        })
+        });
 
         updateTable(root);
     }
