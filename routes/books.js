@@ -38,7 +38,8 @@ router.post('/', async (req, res) => {
         author: req.body.author,
         publishDate: new Date(req.body.publishDate),
         pageCount: req.body.pageCount,
-        description: req.body.description
+        description: req.body.description,
+        stock: req.body.stock
     })
     saveCover(book, req.body.cover)
 
@@ -71,6 +72,7 @@ router.get('/:id/edit', async (req, res) => {
     }
 })
 
+
 //Update Book Route
 router.put('/:id', async (req, res) => {
     let book 
@@ -81,6 +83,7 @@ router.put('/:id', async (req, res) => {
         book.publishDate = new Date(req.body.publishDate)
         book.pageCount = req.body.pageCount
         book.description = req.body.description
+        book.stock = req.body.stock
         if (req.body.cover != null && req.body.cover !== '') {
             saveCover(book, req.body.cover)
         }

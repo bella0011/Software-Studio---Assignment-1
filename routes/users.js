@@ -2,11 +2,12 @@ const express = require('express');
 
 const nodemailer = require('nodemailer');
 const router = express.Router();
-const User = require('../models/user')
+const User = require('../models/user');
+const Book = require("../models/book");
+const Issue = require("../models/issue");
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const { forwardAuthenticated } = require('../config/auth');
-
 
 //Login Page
 router.get('/login',(req, res) => res.render('users/login'));
@@ -113,5 +114,18 @@ router.get('/logout', (req, res) => {
     req.flash('success_msg', 'You are logged out');
     res.redirect('/users/login');
 });
+
+// issue a book
+exports.postIssueBook = async (req, res, next) => {
+    try {
+        const book = await Book.findById(req.params.book_id);
+        const user = await User.findById(req.params.user_id);
+
+        book.stock -= 1;
+
+    } catch {
+        res.redirect('/');
+    }
+}
 
 module.exports = router;

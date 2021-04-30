@@ -14,6 +14,24 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    violationFlag: {
+        type: Boolean,
+        default: false
+    },
+    bookIssueInfo: [
+        {
+            book_info: {
+                id: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: "Issue",
+                },
+            },
+    },
+    ],
+    isAdmin: {
+        type: Boolean,
+        default: false
     }
 })
 
