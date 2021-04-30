@@ -74,6 +74,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "users", "users", "{DA0A84E6
 		views\users\register.ejs = views\users\register.ejs
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "controllers", "controllers", "{412FAE63-C689-404B-A1A6-EDE24982DDE7}"
+	ProjectSection(SolutionItems) = preProject
+		controllers\user.js = controllers\user.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{23E548D8-641A-487E-8173-5C44560475A0}"
+	ProjectSection(SolutionItems) = preProject
+		views\src\app.css = views\src\app.css
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 	EndGlobalSection
@@ -96,5 +106,7 @@ Global
 		{BAFDA3A1-E208-4A59-99D2-E959D300D59B} = {6A62F9C8-2673-45F4-8233-99A92A9E59F8}
 		{EC2A9C23-9E34-42F9-AB6F-61EB6EB9DA37} = {BD3AC5A6-F666-40A0-8B77-C3E69E666A40}
 		{DA0A84E6-0B31-43F4-8ED3-D71E448C8F1D} = {015C8D2B-3469-4ECC-B524-29D4DEC8908F}
+		{412FAE63-C689-404B-A1A6-EDE24982DDE7} = {6A62F9C8-2673-45F4-8233-99A92A9E59F8}
+		{23E548D8-641A-487E-8173-5C44560475A0} = {015C8D2B-3469-4ECC-B524-29D4DEC8908F}
 	EndGlobalSection
 EndGlobal

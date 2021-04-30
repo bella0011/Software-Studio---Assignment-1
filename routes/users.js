@@ -117,20 +117,20 @@ router.get('/logout', (req, res) => {
     res.redirect('/users/login');
 });
 
-// issue a book
-exports.postIssueBook = async (req, res, next) => {
-    try {
-        const book = await Book.findById(req.params.book_id);
-        const user = await User.findById(req.params.user_id);
+//// issue a book
+//exports.postIssueBook = async (req, res, next) => {
+//    try {
+//        const book = await Book.findById(req.params.book_id);
+//        const user = await User.findById(req.params.user_id);
 
-        book.stock -= 1;
+//        book.stock -= 1;
 
-    } catch {
-        res.redirect('/');
-    }
-}
+//    } catch {
+//        res.redirect('/');
+//    }
+//}
 
-//user controller -> issue a book
+//user controller -> issue a book 
 router.post("/books/:book_id/issue/:user_id", userController.postIssueBook);
 
 module.exports = router;
