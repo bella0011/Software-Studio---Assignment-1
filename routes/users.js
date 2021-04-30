@@ -2,14 +2,15 @@ const express = require('express');
 
 const nodemailer = require('nodemailer');
 const router = express.Router();
-const User = require('../models/user')
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const { forwardAuthenticated } = require('../config/auth');
 
+const userController = require('../controllers/user');
+
 const Book = require("../models/book"),
       Issue = require("../models/issue"),
-      User = require("..models/user");
+      User = require("../models/user");
 //Login Page
 router.get('/login',(req, res) => res.render('users/login'));
 
@@ -116,15 +117,7 @@ router.get('/logout', (req, res) => {
     res.redirect('/users/login');
 });
 
-// issue a book
-exports.postIssueBook = async(req,res, next) => {
-    try {
-        const book = await Book.findById(req.params.book_id);
-        const user = await User.findById(req.params.user_id);
-
-        book.stock -= 1;
-
-    };
-}
+//user controller -> issue a book
+router.post("/books/:book_id/issue/:user_id", userController.postIssueBook);
 
 module.exports = router;

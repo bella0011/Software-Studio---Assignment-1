@@ -18,3 +18,10 @@
     padding: 9px 18px;
     font-weight: normal;
 }
+
+.btn-group-xs > .btn, .btn-xs {
+    padding: .40rem .40rem;
+    font-size: .8rem;
+    line-height: .5;
+    border-radius: .2rem;
+}

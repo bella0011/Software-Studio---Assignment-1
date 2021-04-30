@@ -19,6 +19,8 @@ const indexRouter = require('./routes/index')
 const bookRouter = require('./routes/books')
 const userRouter = require('./routes/users')
 
+const User = require("./models/user")
+
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
 app.set('layout', 'layouts/layout')
@@ -62,9 +64,10 @@ app.use(flash())
 
 //Global Variables
 app.use((req, res, next) => {
-    res.locals.success_msg = req.flash('success_msg')
-    res.locals.error_msg = req.flash('error_msg')
-    res.locals.error = req.flash('error')
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+    res.locals.currentUser = req.user;
     next()
 })
 
