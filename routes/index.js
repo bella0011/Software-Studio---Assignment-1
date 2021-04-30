@@ -1,6 +1,7 @@
 ﻿const express = require('express')
 const router = express.Router()
 const Book = require('../models/book')
+const BookRequest = require('../models/bookRequest')
 const { ensureAuthenticated } = require('../config/auth')
 
 //Add Data for Fines
@@ -8,13 +9,13 @@ const chance = require('chance').Chance()
 const shuffleArray = require('shuffle-array')
 
 router.get('/', async (req, res) => {
-    let books
+    let book
     try {
-        books = await Book.find().sort({ createAt: 'desc' }).limit(10).exec()
+        book = await Book.find().sort({ createAt: 'desc' }).limit(10).exec()
     } catch {
-        books = []
+        book = []
     }
-    res.render('index', { books: books })
+    res.render('index', { books: book })
 
 })
 
@@ -25,6 +26,30 @@ router.get('/dashboard', ensureAuthenticated,(req, res) =>
 res.render('dashboard', {
     name: req.user.name
 }))
+
+//Admin's Dashboard
+router.get('/admin/adminDashboard', (req, res) => res.render('admin/adminDashboard', {
+    name: req.user.name
+}))
+
+router.get('/admin/staffBookRequests', (req, res) => res.render('admin/staffBookRequests', {
+    name: req.user.name
+}))
+
+
+
+//------------------------------ Staff ------------------------------------------------------//
+//Staff's Dashboard
+router.get('/staff/staffDashboard', (req, res) => res.render('staff/staffDashboard', {
+    name: req.user.name
+}))
+
+//Book Request Page
+router.get('/staff/staffBookRequest', (req, res) => res.render('staff/staffBookRequest', {
+    name: req.user.name
+}))
+
+//-------------------------------------------------------------------------------------------//
 
 
 //Fine Page
