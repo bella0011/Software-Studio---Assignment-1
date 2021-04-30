@@ -15,10 +15,12 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+
     violationFlag: {
         type: Boolean,
         default: false
     },
+
     bookIssueInfo: [
         {
             book_info: {
@@ -33,6 +35,10 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     }
+                }
+            },
+        },
+    ],
 })
 
 module.exports = mongoose.model('User', userSchema)

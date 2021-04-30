@@ -9,6 +9,8 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const { forwardAuthenticated } = require('../config/auth');
 
+const userController = require('../controllers/user');
+
 //Login Page
 router.get('/login',(req, res) => res.render('users/login'));
 
@@ -127,5 +129,8 @@ exports.postIssueBook = async (req, res, next) => {
         res.redirect('/');
     }
 }
+
+//user controller -> issue a book
+router.post("/books/:book_id/issue/:user_id", userController.postIssueBook);
 
 module.exports = router;

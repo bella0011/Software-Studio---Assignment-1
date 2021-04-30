@@ -1,7 +1,6 @@
-﻿<head>
+﻿﻿<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -172,15 +171,20 @@
     </style>
 </head>
 
-<div> 
-             <h2> Title: <%= book.title %> </h2>
-             <img src="<%= book.coverImagePath %>" width="300" height="450" />
-             <div> Author: <%= book.author %> </div>
-             <div> Publish Date: <%= book.publishDate.toDateString() %> </div>
-             <div> Page Count: <%= book.pageCount %> </div>
-             <div> Description: <%= book.description %> </div>
-             <div> Stock Available: <%= book.stock %> </div>
-            <a href="/books/<%=book.id%>/edit"> Edit </a>
-            <%- include('../partials/deleteForm', { url: `/books/${book.id}` }) %> 
-    </div>
+ <div>
+     <h2> Title: <%= book.title %> </h2>
+     <img src="<%= book.coverImagePath %>" width="300" height="450" />
+     <div> Author: <%= book.author %> </div>
+     <div> Publish Date: <%= book.publishDate.toDateString() %> </div>
+     <div> Page Count: <%= book.pageCount %> </div>
+     <div> Description: <%= book.description %> </div>
+     <div> Stock Available: <%= book.stock %> </div>
+     <a href="/books/<%=book.id%>/edit"> Edit </a>
+     <%- include('../partials/deleteForm', { url: `/books/${book.id}` }) %>
+     <div>
+         <form action="/books/<%=book._id%>/issue/<%=currentUser._id%>" method="POST" class="d-inline">
+             <input class="btn btn-xs btn-success" type="submit" value="Issue">
+         </form>
+     </div>
 
+ </div>

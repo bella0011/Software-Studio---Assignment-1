@@ -1,7 +1,5 @@
-﻿const mongoose = require("mongoose");
-
 const issueSchema = new mongoose.Schema({
-    book_info: {
+    book_info : {
         title: {
             type: String,
             required: true
@@ -47,14 +45,14 @@ const issueSchema = new mongoose.Schema({
         },
 
         issueDate: {
-            type: Date,
-            default: Date.now(),
+            type: Date, 
+            default : Date.now(),
             required: true
         },
 
         returnDate: {
-            type: Date,
-            default: Date.now() + 7 * 24 * 60 * 60 * 1000,
+            type: Date, 
+            default : Date.now() + 7*24*60*60*1000,
             required: true
         },
 
@@ -64,10 +62,11 @@ const issueSchema = new mongoose.Schema({
         },
     },
 
-    user_id: {
-        id: {
+    user_id : {
+        id : {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
+            default: false
         },
 
         email: {
