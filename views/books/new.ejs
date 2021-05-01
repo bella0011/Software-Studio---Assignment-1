@@ -81,13 +81,9 @@
             border-radius: 15px;
         }
 
-        div {
-            margin: 25px
-        }
-
         form {
             width: 400px;
-            height: 600px;
+            height: 800px;
         }
 
         @media (max-width: 952px) {
@@ -157,6 +153,7 @@
                 color: rgb(0, 0, 0);
             }
 
+
         /* BOOKS DISPLAY*/
 
         .grid-wrapper {
@@ -173,11 +170,70 @@
             justify-content: center;
             align-items: center;
         }
+
+        /* FORM STYLES */
+
+        .form-row {
+            display: flex;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-item {
+            display: flex;
+            flex-direction: column;
+            margin-left: 2rem;
+            flex-grow: 1;
+            flex-basis: 0;
+        }
+
+        .form-item:first-child {
+            margin-left: 0;
+        }
+
+        .form-item-no-grow {
+            flex-grow: 0;
+        }
+
+        .form-item textarea {
+            height: 100%;
+            resize: none;
+        }
+
+        .filepond--root {
+            margin-bottom: 0;
+        }
+
+        .filepond--drop-label {
+            font-size: xx-small;
+        }
+
     </style>
 </head>
-<h2> New Book</h2>
-<form action="/books" method="POST">
-    <%- include('_form_fields') %>
-    <a href="/books"> Cancel </a>
-    <button type="submit"> Create </button>
-</form>
+
+
+<section class="Form my-4 mx-5" style="padding-top: 10vh">
+    <div class="container">
+        <div class="row no-gutters">
+
+            <div class="col-lg-5  px-5 pt-5">
+                <img src="https://img.icons8.com/ios/452/add-book.png" class="img-fluid" id="regImg" alt="Register-Image" width="300" style="padding-top: 100px;">
+            </div>
+            <div class="col-lg-7  px-5 pt-5">
+                <h1 class="font-weight-bold py-3">New Book</h1>
+
+                <form action="/books" method="POST">
+                        <div class="form-row">
+                        <%- include('_form_fields') %>
+                        </div>
+                        <div class="form-row">
+                            <a href="/books"> Cancel </a>
+                        </div>
+                        <div class="form-row">
+                            <button type="submit" class="btn1 mt-3 mb-5"> Create </button>
+                        </div>
+                </form>
+
+            </div>
+        </div>
+        </div>
+</section>

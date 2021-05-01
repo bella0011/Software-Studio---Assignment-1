@@ -17,7 +17,7 @@ router.get('/login',(req, res) => res.render('users/login'));
 //Register Page
 router.get('/register',(req, res) => res.render('users/register'));
 
-//Register Handle
+//Register Handle  
 router.post('/register', (req, res) => {
     const { name, email, password, password2 } = req.body;
     let errors = [];
@@ -43,7 +43,7 @@ router.post('/register', (req, res) => {
         })
     } else {
 
-        // Validation Passed
+        // Validation Passed  
         User.findOne( {email: email})
         .then(user => {
             if(user) {
@@ -110,7 +110,7 @@ router.post('/login', (req, res, next) => {
     })(req, res, next);
 });
 
-// Logout
+// Logout  
 router.get('/logout', (req, res) => {
     req.logout();
     req.flash('success_msg', 'You are logged out');
