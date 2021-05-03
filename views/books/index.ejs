@@ -1,4 +1,4 @@
-<head>
+﻿<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -84,6 +84,79 @@
             border-radius: 15px;
         }
 
+        @media (max-width: 2440px) {
+            .grid-wrapper {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(4, minmax(100px, 200px));
+            grid-gap: 1rem;
+            grid-auto-flow: dense;
+        }
+
+        .grid-item {
+            padding: 5rem;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        }
+
+        @media (max-width: 1440px) {
+            .grid-wrapper {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(4, minmax(100px, 200px));
+            grid-gap: 1rem;
+            grid-auto-flow: dense;
+        }
+
+        .grid-item {
+            padding: 8rem;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        }
+
+        @media (max-width: 1215px) {
+            .grid-wrapper {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(4, minmax(100px, 200px));
+            grid-gap: 1rem;
+            grid-auto-flow: dense;
+        }
+
+        .grid-item {
+            padding: 6rem;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        }
+
+        @media (max-width: 1000px) {
+            .grid-wrapper {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(4, minmax(100px, 200px));
+            grid-gap: 1rem;
+            grid-auto-flow: dense;
+        }
+
+        .grid-item {
+            padding: 3rem;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        }
+
+
 
         @media (max-width: 952px) {
             label.logo {
@@ -94,6 +167,25 @@
             nav ul li a {
                 font-size: 16px;
             }
+            
+             /* BOOKS DISPLAY*/
+
+             .grid-wrapper {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(4, minmax(100px, 200px));
+            grid-gap: 1rem;
+            grid-auto-flow: dense;
+        }
+
+        .grid-item {
+            padding: 5rem;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+           
         }
 
         @media (max-width: 858px) {
@@ -132,6 +224,22 @@
             #check:checked~ul {
                 left: 0;
             }
+
+            .grid-wrapper {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, minmax(100px, 200px));
+            grid-gap: 1rem;
+            grid-auto-flow: dense;
+        }
+
+        .grid-item {
+            padding: 3rem;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         }
 
         /* NAVBAR END*/
@@ -153,28 +261,14 @@
         border: 2px solid;
         color: rgb(0, 0, 0);
     }
-        /* BOOKS DISPLAY*/
 
-        .grid-wrapper {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(4, minmax(100px, 200px));
-            grid-gap: 1rem;
-            grid-auto-flow: dense;
-        }
-
-        .grid-item {
-            padding: 5rem;
-            
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    
+        
     </style>
 </head>
 
-<section class="Form my-4 mx-5" style="padding-top: 10vh">
-    <div class="container">
+<section class="Form my-4 mx-5" style="padding-top: 10vh"> 
+    <div class="container"> 
     <div class="row no-gutters">
 
         <div class="col-lg-5">

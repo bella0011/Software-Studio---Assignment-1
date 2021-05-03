@@ -2,11 +2,14 @@ const express = require('express');
 
 const nodemailer = require('nodemailer');
 const router = express.Router();
-const User = require('../models/user')
+const User = require('../models/user');
+const Book = require("../models/book");
+const Issue = require("../models/issue");
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const { forwardAuthenticated } = require('../config/auth');
 
+const userController = require('../controllers/user');
 
 //Login Page
 router.get('/login',(req, res) => res.render('users/login'));
@@ -14,7 +17,7 @@ router.get('/login',(req, res) => res.render('users/login'));
 //Register Page
 router.get('/register',(req, res) => res.render('users/register'));
 
-//Register Handle
+//Register Handle  
 router.post('/register', (req, res) => {
     const { name, email, password, password2 } = req.body;
     let errors = [];
@@ -40,7 +43,7 @@ router.post('/register', (req, res) => {
         })
     } else {
 
-        // Validation Passed
+        // Validation Passed  
         User.findOne( {email: email})
         .then(user => {
             if(user) {
@@ -107,11 +110,27 @@ router.post('/login', (req, res, next) => {
     })(req, res, next);
 });
 
-// Logout
+// Logout  
 router.get('/logout', (req, res) => {
     req.logout();
     req.flash('success_msg', 'You are logged out');
     res.redirect('/users/login');
 });
+
+//// issue a book
+//exports.postIssueBook = async (req, res, next) => {
+//    try {
+//        const book = await Book.findById(req.params.book_id);
+//        const user = await User.findById(req.params.user_id);
+
+//        book.stock -= 1;
+
+//    } catch {
+//        res.redirect('/');
+//    }
+//}
+
+//user controller -> issue a book 
+router.post("/books/:book_id/issue/:user_id", userController.postIssueBook);
 
 module.exports = router;

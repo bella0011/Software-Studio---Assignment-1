@@ -3,7 +3,7 @@
 }
 
 const express = require('express')
-const app = express()
+const app = express() 
 const expressLayouts = require('express-ejs-layouts')
 
 const flash = require('connect-flash')
@@ -21,6 +21,8 @@ const userRouter = require('./routes/users')
 const adminRouter = require('./routes/admin')
 const staffRouter = require('./routes/staff')
 const bookRequestRouter = require('./routes/bookRequests')
+
+const User = require("./models/user")
 
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
@@ -65,9 +67,10 @@ app.use(flash())
 
 //Global Variables
 app.use((req, res, next) => {
-    res.locals.success_msg = req.flash('success_msg')
-    res.locals.error_msg = req.flash('error_msg')
-    res.locals.error = req.flash('error')
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+    res.locals.currentUser = req.user;
     next()
 })
 

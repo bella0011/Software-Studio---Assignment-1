@@ -54,18 +54,17 @@ router.get('/staff/staffBookRequest', (req, res) => res.render('staff/staffBookR
 
 //Fine Page
 
-const data = {
-    headers: ["Name", "Book", "Price"],
-    rows: new Array(10).fill(undefined).map(() => {
-        return [
-            chance.name(),
-            chance.profession(),
-            chance.age(),
-        ]
-    })
-};
-
-router.get('/finesdata',(req, res) => {
+router.get('/data',ensureAuthenticated,(req, res) => {
+    const data = {
+        headers: ["Name", "Book", "Price"],
+        rows: new Array(5).fill(undefined).map(() => {
+            return [
+                req.user.name,
+                chance.name(),
+                chance.age(),
+            ]
+        })
+    };
     res.json({
         headers: data.headers,
         rows: shuffleArray(data.rows),
@@ -75,6 +74,30 @@ router.get('/finesdata',(req, res) => {
 
 router.get('/fines', (req, res) => {
     res.render('fines')
+})
+
+//Borrowed Books Page
+
+router.get('/bookData', ensureAuthenticated, (req, res) => {
+    const data = {
+        headers: ["Name", "Book", "Days Remaining"],
+        rows: new Array(5).fill(undefined).map(() => {
+            return [
+                req.user.name,
+                chance.name(),
+                chance.age(),
+            ]
+        })
+    };
+    res.json({
+        headers: data.headers,
+        rows: shuffleArray(data.rows),
+        lastUpdated: new Date().toISOString()
+    })
+});
+
+router.get('/borrows', (req, res) => {
+    res.render('borrows')
 })
 
 module.exports = router 

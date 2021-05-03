@@ -1,10 +1,190 @@
-﻿<h2> <%= book.title %> </h2>
-<img src="<%= book.coverImagePath %>" />
-<div> Author: <%= book.author %> </div>
-<div> Publish Date: <%= book.publishDate.toDateString() %> </div>
-<div> Page Count: <%= book.pageCount %> </div>
-<div> Description: <%= book.description %> </div>
+﻿﻿<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <title>Search Books</title>
+    <style>
+        * {
+            padding: 0;
+            margin-left: 0;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
 
-<a href="/books/<%=book.id%>/edit"> Edit </a>
-<%- include('../partials/deleteForm', { url: `/books/${book.id}` }) %>
+        /* NAVBAR BEGIN*/
+        nav {
+            background-color: #011936;
+            height: 82px;
+            width: 100%;
+        }
+
+        label.logo {
+            line-height: 80px;
+            padding: 0px 80px;
+        }
+
+        nav ul {
+            float: right;
+            margin-right: 20px
+        }
+
+            nav ul li {
+                display: inline-block;
+                line-height: 80px;
+                margin: 0 5px;
+            }
+
+                nav ul li a {
+                    font-size: 17px;
+                    color: white;
+                    text-transform: uppercase;
+                    padding: 7px 13px;
+                    border-radius: 3px;
+                }
+
+                    a.active,
+                    nav ul li a:hover {
+                        background: #49cee8;
+                        transition: 0.5s;
+                        text-decoration: none;
+                        color: white;
+                    }
+
+        .checkbtn {
+            font-size: 30px;
+            color: white;
+            float: right;
+            line-height: 80px;
+            margin-right: 40px;
+            cursor: pointer;
+            display: none;
+        }
+
+        #check {
+            display: none;
+        }
+
+        body {
+            background: #F9DC5C;
+        }
+
+        .row {
+            background: #f0f0f0;
+            border-radius: 30px;
+            box-shadow: 12px 12px 22px #465362;
+        }
+
+        img {
+            border-radius: 15px;
+        }
+
+        div{
+            margin-left: 25px
+        }
+
+        @media (max-width: 952px) {
+            label.logo {
+                font-size: 30px;
+                padding-left: 50px;
+            }
+
+            nav ul li a {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 858px) {
+            .checkbtn {
+                display: block;
+            }
+
+            ul {
+                position: fixed;
+                width: 100%;
+                height: 100vh;
+                background: #ED254E;
+                top: 80px;
+                left: -100%;
+                text-align: center;
+                transition: all .5s;
+                z-index: 10;
+            }
+
+            nav ul li {
+                display: block;
+                margin: 50px 0;
+                line-height: 30px;
+            }
+
+                nav ul li a {
+                    font-size: 20px;
+                }
+
+            a:hover,
+            a.active {
+                background-color: none;
+                color: darkslateblue;
+            }
+
+            #check:checked ~ ul {
+                left: 0;
+            }
+        }
+
+        /* NAVBAR END*/
+        .btn1 {
+            border: none;
+            outline: none;
+            height: 50px;
+            width: 100%;
+            background-color: #011936;
+            color: white;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+            .btn1:hover {
+                background-color: #ED254E;
+                border: 2px solid;
+                color: rgb(0, 0, 0);
+            }
+
+        /* BOOKS DISPLAY*/
+
+        .grid-wrapper {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(4, minmax(100px, 200px));
+            grid-gap: 1rem;
+            grid-auto-flow: dense;
+        }
+
+        .grid-item {
+            padding: 5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+    </style>
+</head>
+
+ <div>
+     <h2> Title: <%= book.title %> </h2>
+     <img src="<%= book.coverImagePath %>" width="300" height="450" />
+     <div> Author: <%= book.author %> </div>
+     <div> Publish Date: <%= book.publishDate.toDateString() %> </div>
+     <div> Page Count: <%= book.pageCount %> </div>
+     <div> Description: <%= book.description %> </div>
+     <div> Stock Available: <%= book.stock %> </div>
+     <a href="/books/<%=book._id%>/edit"> Edit </a>
+     <%- include('../partials/deleteForm', { url: `/books/${book.id}` }) %>
+     <div>
+         <form action="/books/<%=book._id%>/issue/<%=currentUser._id%>" method="POST" class="d-inline">
+             <input class="btn btn-xs btn-success" type="submit" value="Issue">
+         </form>
+     </div>
+
+ </div>
