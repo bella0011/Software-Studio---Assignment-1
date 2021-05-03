@@ -1,0 +1,10 @@
+<%- include('../partials/adminHeader.ejs') %>
+<h2>Book Request</h2>
+<form action="/admin/staffBookRequest" method="POST">
+   
+    
+    <%- include('../bookRequests/index.ejs') %>
+    <a class="nav-link" href="/bookRequests">Book Requests</a>
+    <a href="/admin/staffBookRequest"> Cancel </a>
+    <button type="submit"> Create </button>
+</form>
