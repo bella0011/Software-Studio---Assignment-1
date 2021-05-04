@@ -1,5 +1,10 @@
-
-  <head>
+<script>
+    $(document).ready(function () {
+        $('header').empty();
+        $('footer').empty();
+    });
+</script>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -8,7 +13,7 @@
 
     <title>Log-In</title>
     <style>
-        *{
+        * {
             padding: 0;
             margin: 0;
             box-sizing: border-box;
@@ -16,42 +21,48 @@
         }
 
         /* NAVBAR BEGIN*/
-        nav{
+        nav {
             background-color: #011936;
             height: 82px;
             width: 100%;
 
         }
-        label.logo{
+
+        label.logo {
             line-height: 80px;
             padding: 0px 80px;
 
         }
-        nav ul{
+
+        nav ul {
             float: right;
             margin-right: 20px
         }
-        nav ul li{
+
+        nav ul li {
             display: inline-block;
             line-height: 80px;
             margin: 0 5px;
         }
-        nav ul li a{
+
+        nav ul li a {
             font-size: 17px;
             color: white;
             text-transform: uppercase;
             padding: 7px 13px;
             border-radius: 3px;
-            
+
         }
-        
-        a.active, nav ul li a:hover{
+
+        a.active,
+        nav ul li a:hover {
             background: #49cee8;
             transition: 0.5s;
             text-decoration: none;
             color: white;
         }
-        .checkbtn{
+
+        .checkbtn {
             font-size: 30px;
             color: white;
             float: right;
@@ -60,22 +71,27 @@
             cursor: pointer;
             display: none;
         }
-        #check{
+
+        #check {
             display: none;
         }
-        body{
+
+        body {
             background: #F9DC5C;
         }
-        .row{
+
+        .row {
             background: #f5f5f5;
             border-radius: 30px;
             box-shadow: 12px 12px 22px #465362;
         }
-        img{
+
+        img {
             border-top-left-radius: 30px;
             border-bottom-left-radius: 30px;
         }
-        .btn1{
+
+        .btn1 {
             border: none;
             outline: none;
             height: 50px;
@@ -85,28 +101,31 @@
             border-radius: 4px;
             font-weight: bold;
         }
-        .btn1:hover{
+
+        .btn1:hover {
             background-color: #ED254E;
             border: 2px solid;
             color: rgb(0, 0, 0);
         }
 
 
-        @media (max-width: 952px){
-            label.logo{
+        @media (max-width: 952px) {
+            label.logo {
                 font-size: 30px;
                 padding-left: 50px;
             }
-            nav ul li a{
+
+            nav ul li a {
                 font-size: 16px;
             }
         }
 
-        @media (max-width: 858px){
-            .checkbtn{
+        @media (max-width: 858px) {
+            .checkbtn {
                 display: block;
             }
-            ul{
+
+            ul {
                 position: fixed;
                 width: 100%;
                 height: 100vh;
@@ -117,25 +136,29 @@
                 transition: all .5s;
                 z-index: 10;
             }
-            nav ul li{
+
+            nav ul li {
                 display: block;
                 margin: 50px 0;
                 line-height: 30px;
             }
-            nav ul li a{
+
+            nav ul li a {
                 font-size: 20px;
             }
-            a:hover,a.active{
+
+            a:hover,
+            a.active {
                 background-color: none;
                 color: darkslateblue;
             }
-            #check:checked ~ ul{
+
+            #check:checked~ul {
                 left: 0;
             }
         }
 
         /* NAVBAR END*/
-
     </style>
 </head>
 
@@ -146,7 +169,8 @@
 
             <div class="row no-gutters">
                 <div class="col-lg-5">
-                    <img src="https://cdn.pixabay.com/photo/2019/03/18/15/23/fantasies-4063346_1280.jpg" class="img-fluid" id="logImg" alt="LogIn-Image" width="100%" style="padding-top: 80px;">
+                    <img src="https://cdn.pixabay.com/photo/2019/03/18/15/23/fantasies-4063346_1280.jpg"
+                        class="img-fluid" id="logImg" alt="LogIn-Image" width="100%" style="padding-top: 80px;">
                 </div>
 
                 <div class="col-lg-7  pt-5">
@@ -157,36 +181,41 @@
                         <div class="form-row">
                             <div class="col-lg-7">
                                 <label for="email"></label>
-                                    <input type="email" class="form-control my-3 p-4" id="email" name="email" placeholder="Enter Email"
-                                    value="<%= typeof email != 'undefined' ? email : '' %>" required />
+                                <input type="email" class="form-control my-3 p-4" id="email" name="email"
+                                    placeholder="Enter Email" value="<%= typeof email != 'undefined' ? email : '' %>"
+                                    required />
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="col-lg-7">
                                 <label for="password"></label>
-                                    <input type="password" class="form-control my-3 p-4" id="password" name="password" placeholder="Enter Password"
+                                <input type="password" class="form-control my-3 p-4" id="password" name="password"
+                                    placeholder="Enter Password"
                                     value="<%= typeof password != 'undefined' ? password : '' %>" required />
                             </div>
                         </div>
 
-                        
 
-                        
+
+
                         <div class="form-row">
                             <div class="col-lg-7">
                                 <button type="submit" class="registerBtn btn1 mt-3 mb-5">Log In</button>
                             </div>
                         </div>
-                      
-                    <p class="mb-20">Staff Member? <a href="/staff/staffLogin">Staff Login</a> here</p>
-                    <p class="mb-20">Administrator? <a href="/admin/adminLogin">Administrator Login</a> here</p>      
-                    <p class="mb-20">Don't have an account?<a href="/users/register"> Register </a>here</p>
-                </form>
-            </div>
+
+                        <div class="padding-bottom: 20px">
+                            <p class="mb-20">Staff Member? <a href="/staff/staffLogin">Staff Login</a> here</p>
+                            <p class="mb-20">Administrator? <a href="/admin/adminLogin">Administrator Login</a> here</p>
+                            <p class="mb-20">Don't have an account?<a href="/users/register"> Register </a>here</p>
+                        </div>
+
+                    </form>
+                </div>
             </div>
     </section>
-    
+
 </body>
 
 

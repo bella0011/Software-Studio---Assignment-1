@@ -7,6 +7,7 @@ const { ensureAuthenticated } = require('../config/auth')
 //Add Data for Fines
 const chance = require('chance').Chance()
 const shuffleArray = require('shuffle-array')
+const { render } = require('ejs')
 
 router.get('/', async (req, res) => {
     let book
@@ -19,6 +20,16 @@ router.get('/', async (req, res) => {
 
 })
 
+router.get('/lgIndex', async (req, res) => {
+    let book
+    try {
+        book = await Book.find().sort({ createAt: 'desc' }).limit(10).exec()
+    } catch {
+        book = []
+    }
+    res.render('lgIndex', { books: book })
+
+})
 
 //Dashboard Page
 
