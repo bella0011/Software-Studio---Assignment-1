@@ -57,7 +57,7 @@ router.get('/staff/staffBookRequest', (req, res) => res.render('staff/staffBookR
 router.get('/data',ensureAuthenticated,(req, res) => {
     const data = {
         headers: ["Name", "Book", "Price"],
-        rows: new Array(5).fill(undefined).map(() => {
+        rows: new Array(5).fill(undefined).map(() => { //rows: new Vector.fill(undefined).map(() => {
             return [
                 req.user.name,
                 chance.name(),
@@ -80,10 +80,9 @@ router.get('/fines', (req, res) => {
 
 router.get('/bookData', ensureAuthenticated, (req, res) => {
     const data = {
-        headers: ["Name", "Book", "Days Remaining"],
+        headers: ["Book", "Days Remaining"],
         rows: new Array(5).fill(undefined).map(() => {
             return [
-                req.user.name,
                 chance.name(),
                 chance.age(),
             ]
