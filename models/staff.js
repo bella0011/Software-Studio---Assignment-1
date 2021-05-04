@@ -16,21 +16,6 @@ const userSchema = new mongoose.Schema({
         required: true
     },
 
-    violationFlag: {
-        type: Boolean,
-        default: false
-    },
-
-    bookIssueInfo: [
-        {
-            book_info: {
-                id: {
-                    type: mongoose.Schema.Types.ObjectId,
-                    ref: "Issue",
-                }
-            },
-        },
-    ],
 })
 
 module.exports = mongoose.model('Staff', userSchema)
