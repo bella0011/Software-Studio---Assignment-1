@@ -96,74 +96,74 @@
 
         @media (max-width: 2440px) {
             .grid-wrapper {
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                grid-template-rows: repeat(4, minmax(100px, 200px));
-                grid-gap: 1rem;
-                grid-auto-flow: dense;
-            }
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(4, minmax(100px, 200px));
+            grid-gap: 1rem;
+            grid-auto-flow: dense;
+        }
 
-            .grid-item {
-                padding: 5rem;
-
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
+        .grid-item {
+            padding: 5rem;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         }
 
         @media (max-width: 1440px) {
             .grid-wrapper {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                grid-template-rows: repeat(4, minmax(100px, 200px));
-                grid-gap: 1rem;
-                grid-auto-flow: dense;
-            }
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(4, minmax(100px, 200px));
+            grid-gap: 1rem;
+            grid-auto-flow: dense;
+        }
 
-            .grid-item {
-                padding: 8rem;
-
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
+        .grid-item {
+            padding: 8rem;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         }
 
         @media (max-width: 1215px) {
             .grid-wrapper {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                grid-template-rows: repeat(4, minmax(100px, 200px));
-                grid-gap: 1rem;
-                grid-auto-flow: dense;
-            }
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(4, minmax(100px, 200px));
+            grid-gap: 1rem;
+            grid-auto-flow: dense;
+        }
 
-            .grid-item {
-                padding: 6rem;
-
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
+        .grid-item {
+            padding: 6rem;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         }
 
         @media (max-width: 1000px) {
             .grid-wrapper {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                grid-template-rows: repeat(4, minmax(100px, 200px));
-                grid-gap: 1rem;
-                grid-auto-flow: dense;
-            }
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(4, minmax(100px, 200px));
+            grid-gap: 1rem;
+            grid-auto-flow: dense;
+        }
 
-            .grid-item {
-                padding: 3rem;
-
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
+        .grid-item {
+            padding: 3rem;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         }
 
 
@@ -176,8 +176,8 @@
             nav ul li a {
                 font-size: 16px;
             }
-
-
+            
+           
         }
 
         @media (max-width: 858px) {
@@ -218,53 +218,62 @@
             }
 
             .grid-wrapper {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: repeat(2, minmax(100px, 200px));
-                grid-gap: 1rem;
-                grid-auto-flow: dense;
-            }
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, minmax(100px, 200px));
+            grid-gap: 1rem;
+            grid-auto-flow: dense;
+        }
 
-            .grid-item {
-                padding: 3rem;
-
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
+        .grid-item {
+            padding: 3rem;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         }
 
         /* NAVBAR END*/
     </style>
 </head>
 
-<body>
-    <section class="Form my-4 mx-5 margin-right: 6vw" style="padding-top: 12vh;">
-        <div class="container">
+<nav>
+    <input type="checkbox" id="check">
+    <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+    </label>
+    <label class="logo">
+        <a href="/dashboard"><img src="https://cdn.pixabay.com/photo/2016/01/23/16/02/book-1157658_1280.png" alt="" height="55px" width="55x"></a>
+    </label>
+    <ul>
+        <li> <a href="/books">Search</a> </li>
+        <li> <a href="/lgIndex">Browse</a> </li>
+        <li> <a href="/borrows">Borrowed</a> </li>
+        <li> <a href="/fines">Fines</a> </li>
+        <li> <a href="/users/logout">Logout</a>> </li>
+    </ul>
+</nav>
+
+<div class="container">
+    <div class="col-lg-7 px-6 pt-5">
+        <div class="grid-wrapper">
 
 
-            <div class="row no-gutters">
-                <div class="col-lg-5">
-                    <img src="https://cdn.pixabay.com/photo/2020/07/06/17/43/learn-5377778_1280.png" class="img-fluid"
-                        id="logImg" alt="LogIn-Image" width="80%" style="padding-top: 100px; padding-left: 100px;">
+
+            <% books.forEach(book=> { %>
+                <div class="grid-item">
+
+                    <a href="/books/<%=book.id%>">
+
+                        <img height="150" width="100" src="<%= book.coverImagePath %>">
+
+                    </a>
                 </div>
+                <% }) %>
 
-                <div class="col-lg-7  pt-5">
-                    <h1 class="font-weight-bold py-3">Welcome to</h1>
-                    <h2 class="py-1">Western Sydney eLibrary</h2>
+        </div>
 
-                    <h3 style="padding-bottom: 40px;">
-                        <br>
-                        We are a generic university & this is an eLibrary made by an awesome group we hired.
-                    </h3>
-
-                    <div style="padding-bottom: 20px;">
-                        <p class="mb-20">Student? <a href="/users/login">Student Login</a> here</p>
-                        <p class="mb-20">Staff Member? <a href="/staff/staffLogin">Staff Login</a> here</p>
-                        <p class="mb-20">Administrator? <a href="/admin/adminLogin">Administrator Login</a> here</p>
-                        <p class="mb-20">Don't have an account?<a href="/users/register"> Register </a>here</p>
-                    </div>
-                </div>
-            </div>
-    </section>
-</body>
+    </div>
+</div>
+</div>
