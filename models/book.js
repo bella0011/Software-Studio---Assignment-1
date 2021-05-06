@@ -35,6 +35,7 @@ const bookSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    
 
     author: {
         type: String,
@@ -44,7 +45,11 @@ const bookSchema = new mongoose.Schema({
     stock: {
         type: Number,
         required: true
-    }
+    },
+    comments : [{
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "Comment",
+    }],
 })
 
 bookSchema.virtual('coverImagePath').get(function() {

@@ -1,20 +1,26 @@
-const express = require('express');
 
-const nodemailer = require('nodemailer');
-const router = express.Router();
-const bcrypt = require('bcryptjs');
-const passport = require('passport');
-const { forwardAuthenticated } = require('../config/auth');
 
-const Book = require("../models/book");
-const Issue = require("../models/issue");
-const User = require("../models/user");
+// importing dependencies
+const sharp = require('sharp');
+const uid = require('uid');
+const fs = require('fs');
+
+
+const   Book = require("../models/book"),
+        Issue = require("../models/issue"),
+        User = require("../models/user");
 
 exports.postIssueBook = async(req, res, next) => {
+    if(req.user.violationFlag) {
+        req.flash("error", "You are flagged for violating rules/delay on returning books/paying fines. Untill the flag is lifted, You can't issue any books");
+        return res.redirect("back");
+    }
     try {
         const book = await Book.findById(req.params.book_id);
         const user = await User.findById(req.params.user_id);
+        console.log(book);
 
+        // registering loan
         book.stock -= 1;
         const issue = new Issue({
             book_info: {
@@ -31,7 +37,6 @@ exports.postIssueBook = async(req, res, next) => {
                 returnDate: book.returnDate,
                 isRenewed: book.isRenewed,
             },
-            
             user_id: {
                 id:user._id,
                 email: user.email,

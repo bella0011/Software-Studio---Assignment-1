@@ -1,7 +1,11 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose")
 
 const issueSchema = new mongoose.Schema({
     book_info : {
+        id : {
+            type : mongoose.Schema.Types.ObjectId,
+            ref : 'Book', 
+        },
         title: {
             type: String,
             required: true
@@ -35,7 +39,7 @@ const issueSchema = new mongoose.Schema({
             type: String,
             required: true
         },
-
+        
         author: {
             type: String,
             required: true
@@ -49,13 +53,13 @@ const issueSchema = new mongoose.Schema({
         issueDate: {
             type: Date, 
             default : Date.now(),
-            required: true
+            
         },
 
         returnDate: {
             type: Date, 
             default : Date.now() + 7*24*60*60*1000,
-            required: true
+            
         },
 
         isRenewed: {
