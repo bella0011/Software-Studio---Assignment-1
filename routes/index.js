@@ -33,10 +33,17 @@ router.get('/lgIndex', async (req, res) => {
 
 //Dashboard Page
 
-router.get('/dashboard', ensureAuthenticated,(req, res) => 
-res.render('dashboard', {
-    name: req.user.name
-}))
+router.get('/dashboard', ensureAuthenticated, async (req, res) => {
+    let book
+    try {
+        book = await Book.find().sort({ createAt: 'desc' }).limit(10).exec()
+    } catch {
+        book = []
+    }
+    res.render('dashboard', { books: book , name: req.user.name})
+    
+})
+
 
 //Admin's Dashboard
 router.get('/admin/adminDashboard', (req, res) => res.render('admin/adminDashboard', {
