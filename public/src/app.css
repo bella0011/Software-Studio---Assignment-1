@@ -13,7 +13,7 @@
 }
 
 .table-refresh__table thead tr {
-    background: #047ee2;
+    background: #011936;
     color: #ffffff;
 }
 
@@ -26,6 +26,11 @@
 
 .table-refresh__table tbody tr:nth-of-type(even) {
     background: #eeeeee;
+}
+
+.table-refresh__table tbody tr:nth-of-type(odd) {
+    background: #047ee2;
+    color: #ffffff;
 }
 
 .table-refresh__options {
@@ -67,5 +72,5 @@
 
 .table-refresh__label {
     font-size: 0.8em;
-    color: #999999;
+    color: #000000;
 }
