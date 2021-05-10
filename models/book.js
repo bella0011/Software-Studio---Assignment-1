@@ -46,10 +46,6 @@ const bookSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    comments : [{
-        type : mongoose.Schema.Types.ObjectId,
-        ref : "Comment",
-    }],
 })
 
 bookSchema.virtual('coverImagePath').get(function() {

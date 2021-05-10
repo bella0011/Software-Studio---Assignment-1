@@ -12,8 +12,7 @@ const Book = require("../models/book"),
       Issue = require("../models/issue"),
       User = require("../models/user");
 
-//user controller -> issue a book
-router.post("/books/:book_id/issue/:user_id", userController.postIssueBook);
+
 
 //Login Page
 router.get('/login',(req, res) => res.render('users/login'));
@@ -121,5 +120,7 @@ router.get('/logout', (req, res) => {
     res.redirect('/users/login');
 });
 
+//user controller -> issue a book
+router.post("/books/:book_id/issue/:user_id", userController.postIssueBook);
 
 module.exports = router;

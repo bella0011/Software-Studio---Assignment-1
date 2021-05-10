@@ -11,14 +11,12 @@ const   Book = require("../models/book"),
         User = require("../models/user");
 
 exports.postIssueBook = async(req, res, next) => {
-    if(req.user.violationFlag) {
-        req.flash("error", "You are flagged for violating rules/delay on returning books/paying fines. Untill the flag is lifted, You can't issue any books");
-        return res.redirect("back");
-    }
+    console.log(req);
+    console.log(res);
     try {
         const book = await Book.findById(req.params.book_id);
         const user = await User.findById(req.params.user_id);
-        console.log(book);
+        console.log("postIssueBook");
 
         // registering loan
         book.stock -= 1;
@@ -43,7 +41,7 @@ exports.postIssueBook = async(req, res, next) => {
             }
         });
 
-        user.bookIssueInfo.push(book._id);
+        
 
         await issue.save();
         await book.save();

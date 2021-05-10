@@ -7,8 +7,7 @@ const issueSchema = new mongoose.Schema({
             ref : 'Book', 
         },
         title: {
-            type: String,
-            required: true
+            type: String
         },
 
         description: {
@@ -16,38 +15,26 @@ const issueSchema = new mongoose.Schema({
         },
 
         publishDate: {
-            type: Date,
-            required: true
+            type: Date
         },
 
         pageCount: {
-            type: Number,
-            required: true
-        },
-
-        createdAt: {
-            type: Date,
-            required: true,
-            default: Date.now
+            type: Number
         },
 
         coverImage: {
-            type: Buffer,
-            required: true
+            type: Buffer
         },
         coverImageType: {
-            type: String,
-            required: true
+            type: String
         },
         
         author: {
-            type: String,
-            required: true
+            type: String
         },
 
         stock: {
-            type: Number,
-            required: true
+            type: Number
         },
 
         issueDate: {
@@ -76,7 +63,6 @@ const issueSchema = new mongoose.Schema({
 
         email: {
             type: String,
-            required: true,
         },
     },
 
