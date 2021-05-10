@@ -1,32 +1,47 @@
-﻿<div>
-    <label> Title </label>
-    <input type="text" name="title" value="<%= bookRequest.title %>" />
+﻿<div class="form-row">
+    <div class="form-item">
+        <label> Title </label>
+        <input type="text" name="title" value="<%= bookRequest.title %>" class="form-control my-3 p-4" />
+    </div>
+
+    <div class="form-item">
+        <label> Author </label>
+        <input type="text" name="author" value="<%- bookRequest.author %>" class="form-control my-3 p-4" />
+    </div>
+
 </div>
 
-<div>
-    <label> Author </label>
-    <input type="text" name="author" value="<%- bookRequest.author %>" />
+<div class="form-row">
+    <div class="form-item">
+        <label> Publish Date </label>
+        <input type="date" name="publishDate"
+            value="<%= bookRequest.publishDate == null ? '': bookRequest.publishDate.toISOString().split('T')[0] %>"
+            class="form-control my-3 p-4" />
+    </div>
+
+    <div class="form-item">
+        <label> Page Count </label>
+        <input type="number" name="pageCount" min="1" value="<%- bookRequest.pageCount %>" class="form-control my-3 p-4" />
+    </div>
+
 </div>
 
-<div>
-    <label> Publish Date </label>
-    <input type="date" name="publishDate"
-            value="<%= bookRequest.publishDate == null ? '': bookRequest.publishDate.toISOString().split('T')[0] %>" />
-            </div>
 
-<div>
-    <label> Page Count </label>
-    <input type="number" name="pageCount" min="1"
-            value="<%- bookRequest.pageCount="" %>" />
+<div class="form-row col-lg-4">
+    <div class="form-item ">
+        <label> Cover </label>
+        <input type="file" name="cover" class="filepond" />
+    </div>
 </div>
 
-<div>
-    <label> Cover </label>
-    <input type="file" name="cover" class="filepond"/>
+
+
+<div class="col-lg-10">
+    <div class="form-row">
+        <div class="form-item ">
+            <label> Description </label>
+            <textarea name="description" class="form-control my-3 p-4"><%-bookRequest.description%> </textarea>
+        </div>
+    </div>
 </div>
 
-<div>
-    <label> Description </label>
-    <textarea name="description">
-      <%-bookRequest.description%></textarea>
-</div>

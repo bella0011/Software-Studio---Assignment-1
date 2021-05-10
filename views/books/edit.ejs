@@ -1,11 +1,18 @@
-﻿<head>
+﻿<script>
+    $(document).ready(function () {
+        $('header').empty();
+        $('footer').empty();
+    });
+</script>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Search Books</title>
+    <title>Edit Books</title>
     <style>
         * {
             padding: 0;
@@ -171,6 +178,43 @@
         }
 
         /* FORM STYLES */
+
+        .form-row {
+            display: flex;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-item {
+            display: flex;
+            flex-direction: column;
+            margin-left: 2rem;
+            flex-grow: 1;
+            flex-basis: 0;
+        }
+
+            .form-item:first-child {
+                margin-left: 0;
+            }
+
+        .form-item-no-grow {
+            flex-grow: 0;
+        }
+
+        .form-item textarea {
+            height: 100%;
+            resize: none;
+        }
+
+        .filepond--root {
+            margin-bottom: 0;
+        }
+
+        .filepond--drop-label {
+            font-size: xx-small;
+
+        }
+
+        /* FORM STYLES */
         .form-row {
             display: flex;
             margin-bottom: 0.5rem;
@@ -210,6 +254,24 @@
 
     </style>
 </head>
+
+<nav>
+    <input type="checkbox" id="check">
+    <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+    </label>
+    <label class="logo">
+        <a href="/dashboard"><img src="https://cdn.pixabay.com/photo/2016/01/23/16/02/book-1157658_1280.png" alt="" height="55px" width="55px"></a>
+    </label>
+    
+    <ul>
+        <li> <a href="/books">Search</a> </li>
+        <li> <a href="/lgIndex">Browse</a> </li>
+        <li> <a href="/borrows">Borrowed</a> </li>
+        <li> <a href="/fines">Fines</a> </li>
+        <li> <a href="/users/logout">Logout</a>> </li>
+    </ul>
+</nav>
 
 <section class="Form my-4 mx-5" style="padding-top: 10vh">
     <div class="container">

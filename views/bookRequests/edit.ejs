@@ -1,4 +1,10 @@
-﻿<h2> Edit Book</h2>
+﻿<script>
+    $(document).ready(function () {
+        $('header').empty();
+        $('footer').empty();
+    });
+</script>
+<h2> Edit Book</h2>
 <form action="/bookRequests/ <%=bookRequest.id%>?_method=PUT" method="POST">
     <%- include('_form_fields') %>
     <a href="/bookRequests"> Cancel </a>
