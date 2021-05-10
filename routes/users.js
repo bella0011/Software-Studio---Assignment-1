@@ -3,6 +3,7 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const router = express.Router();
 const User = require('../models/user');
+const Staff = require('../models/staff');
 const Book = require("../models/book");
 const Issue = require("../models/issue");
 const bcrypt = require('bcryptjs');
@@ -10,6 +11,8 @@ const passport = require('passport');
 const { forwardAuthenticated } = require('../config/auth');
 
 const userController = require('../controllers/user');
+const staff = require('../models/staff');
+
 
 //Login Page
 router.get('/login',(req, res) => res.render('users/login'));
@@ -57,12 +60,65 @@ router.post('/register', (req, res) => {
                     password2
                 })
             } else {
-                // Add New User
-                const newUser = new User({
-                    name: req.body.name,
-                    email: req.body.email,
-                    password: req.body.password
-                })
+                if (req.body.email.includes("student")) {// Add New User
+                    const newUser = new User({
+                        name: req.body.name,
+                        email: req.body.email,
+                        password: req.body.password
+                    })
+                    // Hash Password
+                    bcrypt.genSalt(10, (err, salt) => 
+                    bcrypt.hash(newUser.password, salt, (err, hash) => {
+                    if (err) throw err;
+                    // Set password to hashed
+                    newUser.password = hash;
+                    // Save User
+                    newUser.save()
+                        .then(user => {
+                            req.flash('success_msg', 'You are now registered and can log in')
+                            res.redirect('/users/login')
+                        })
+                        .catch(err => console.log(err))
+
+            }))
+                }
+                else {
+                    Staff.findOne( {email: email})
+                    .then(staff => {
+                        if(staff) {
+                            errors.push({ msg: 'Email is already registered'})
+                            res.render('users/register', {
+                            errors,
+                            name,
+                            email,
+                            password,
+                            password2
+                            })
+                        }
+                        else {
+                            const newStaff = new Staff({
+                                name: req.body.name,
+                                email: req.body.email,
+                                password: req.body.password
+                            })
+                            // Hash Password
+                            bcrypt.genSalt(10, (err, salt) => 
+                            bcrypt.hash(newStaff.password, salt, (err, hash) => {
+                            if (err) throw err;
+                            // Set password to hashed
+                            newStaff.password = hash;
+                            // Save User
+                            newStaff.save()
+                            .then(staff => {
+                                req.flash('success_msg', 'You are now registered and can log in')
+                                res.redirect('/staff/staffLogin')
+                            })
+                            .catch(err => console.log(err))
+
+            }))
+                        }
+                    })
+                }
 
                 // Send Confirmation Email
                 let transporter = nodemailer.createTransport({
@@ -80,26 +136,13 @@ router.post('/register', (req, res) => {
                 }
                 transporter.sendMail(mailOptions);
 
-                // Hash Password
-                bcrypt.genSalt(10, (err, salt) => 
-                    bcrypt.hash(newUser.password, salt, (err, hash) => {
-                        if (err) throw err;
-                        // Set password to hashed
-                        newUser.password = hash;
-                        // Save User
-                        newUser.save()
-                            .then(user => {
-                                req.flash('success_msg', 'You are now registered and can log in')
-                                res.redirect('/users/login')
-                            })
-                            .catch(err => console.log(err))
-
-                }))
+                
             }
-        })    
+        })
     }
 
 })
+
 
 // Login
 router.post('/login', (req, res, next) => {

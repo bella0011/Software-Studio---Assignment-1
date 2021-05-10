@@ -33,10 +33,17 @@ router.get('/lgIndex', async (req, res) => {
 
 //Dashboard Page
 
-router.get('/dashboard', ensureAuthenticated,(req, res) => 
-res.render('dashboard', {
-    name: req.user.name
-}))
+router.get('/dashboard', ensureAuthenticated, async (req, res) => {
+    let book
+    try {
+        book = await Book.find().sort({ createAt: 'desc' }).limit(10).exec()
+    } catch {
+        book = []
+    }
+    res.render('dashboard', { books: book , name: req.user.name})
+    
+})
+
 
 //Admin's Dashboard
 router.get('/admin/adminDashboard', (req, res) => res.render('admin/adminDashboard', {
@@ -67,10 +74,9 @@ router.get('/staff/staffBookRequest', (req, res) => res.render('staff/staffBookR
 
 router.get('/data',ensureAuthenticated,(req, res) => {
     const data = {
-        headers: ["Name", "Book", "Price"],
-        rows: new Array(5).fill(undefined).map(() => {
+        headers: ["Book", "Price"],
+        rows: new Array(5).fill(undefined).map(() => { //rows: new Vector.fill(undefined).map(() => {
             return [
-                req.user.name,
                 chance.name(),
                 chance.age(),
             ]
@@ -91,10 +97,9 @@ router.get('/fines', (req, res) => {
 
 router.get('/bookData', ensureAuthenticated, (req, res) => {
     const data = {
-        headers: ["Name", "Book", "Days Remaining"],
+        headers: ["Book", "Days Remaining"],
         rows: new Array(5).fill(undefined).map(() => {
             return [
-                req.user.name,
                 chance.name(),
                 chance.age(),
             ]

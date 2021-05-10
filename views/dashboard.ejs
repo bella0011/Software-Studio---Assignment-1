@@ -88,13 +88,84 @@
             border-radius: 15px;
         }
 
-        div {
-            margin: 25px
-        }
+
 
         form {
             width: 400px;
             height: 600px;
+        }
+
+        /* Grid Wrapper begin */
+        @media (max-width: 2440px) {
+            .grid-wrapper {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(4, minmax(100px, 200px));
+            grid-gap: 1rem;
+            grid-auto-flow: dense;
+        }
+
+        .grid-item {
+            padding: 5rem;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        }
+
+        @media (max-width: 1440px) {
+            .grid-wrapper {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(4, minmax(100px, 200px));
+            grid-gap: 1rem;
+            grid-auto-flow: dense;
+        }
+
+        .grid-item {
+            padding: 8rem;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        }
+
+        @media (max-width: 1215px) {
+            .grid-wrapper {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(4, minmax(100px, 200px));
+            grid-gap: 1rem;
+            grid-auto-flow: dense;
+        }
+
+        .grid-item {
+            padding: 6rem;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        }
+
+        @media (max-width: 1000px) {
+            .grid-wrapper {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(4, minmax(100px, 200px));
+            grid-gap: 1rem;
+            grid-auto-flow: dense;
+        }
+
+        .grid-item {
+            padding: 3rem;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         }
 
         @media (max-width: 952px) {
@@ -144,6 +215,22 @@
             #check:checked ~ ul {
                 left: 0;
             }
+            .grid-wrapper {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, minmax(100px, 200px));
+            grid-gap: 1rem;
+            grid-auto-flow: dense;
+        }
+
+        .grid-item {
+            padding: 3rem;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
         }
 
         /* NAVBAR END*/
@@ -164,27 +251,13 @@
                 color: rgb(0, 0, 0);
             }
 
-        /* BOOKS DISPLAY*/
 
-        .grid-wrapper {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(4, minmax(100px, 200px));
-            grid-gap: 1rem;
-            grid-auto-flow: dense;
-        }
 
-        .grid-item {
-            padding: 5rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+
 
         .welUser{
             font-size: medium;
             color: white;
-            font-family: 'Courier New', Courier, monospace;
         }
     </style>
 </head>
@@ -208,5 +281,28 @@
         <li> <a href="/users/logout">Logout</a>> </li>
     </ul>
 </nav>
+
+<div class="container">
+    <div class="col-lg-7 px-6 pt-5">
+        <h1> Recently Added </h1>
+        <div class="grid-wrapper">
+
+
+
+            <% books.forEach(book=> { %>
+                <div class="grid-item">
+
+                    <a href="/books/<%=book.id%>">
+
+                        <img height="150" width="100" src="<%= book.coverImagePath %>">
+
+                    </a>
+                </div>
+                <% }) %>
+
+        </div>
+
+    </div>
+</div>
 
 
