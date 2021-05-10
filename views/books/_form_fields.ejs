@@ -25,15 +25,23 @@
     </div>
 
 </div>
-
 <div class="form-row">
+
     <div class="form-item">
         <label> Stock </label>
-        <textarea name="stock" class="form-control my-3 p-4"><%-book.stock%></textarea>
+        <textarea name="stock" class="form-control my-3 p-4" rows ="3" cols="28"><%-book.stock%></textarea>
     </div>
 
 
+
+
+
+    <div class="form-item">
+        <label> Cover </label>
+        <input type="file" name="cover" class="filepond"  />
+    </div>
 </div>
+
 
 <div class="col-lg-10">
     <div class="form-row">
@@ -46,10 +54,5 @@
 
     </div>
 
-    <div class="form-row">
-        <div class="form-item ">
-            <label> Cover </label>
-            <input type="file" name="cover" />
-        </div>
-    </div>
+
 </div>
