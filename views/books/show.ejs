@@ -266,11 +266,13 @@
                     <%- include('../partials/deleteForm', { url: `/books/${book.id}` }) %>
                 </div>
                 <div class="form-row">
-                    <form action="/books/<%=book._id%>/issue/<%=currentUser._id%>" method="POST" class="d-inline">
+                    <form action="/books/<%=book._id%>/issue/<%=currentUser._id%>" method="POST" class="d-inline"
+                          style="margin:0;">
                         <input class="btn btn-xs btn-success" type="submit" value="Issue">
                     </form>
                 </div>
+                
             </div>
-    </div>
+        </div>
         </div>
 </section>
