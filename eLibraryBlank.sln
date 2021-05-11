@@ -26,6 +26,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "routes", "routes", "{4F15AA
 		routes\index.js = routes\index.js
 		routes\books.js = routes\books.js
 		routes\users.js = routes\users.js
+		routes\admin.js = routes\admin.js
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "models", "models", "{40A956FC-6D4D-4B3C-9B18-6D13D7F4328A}"
