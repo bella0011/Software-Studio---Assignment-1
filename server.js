@@ -10,9 +10,11 @@ const flash = require('connect-flash')
 const session = require('express-session')
 const passport = require('passport')
 const staffpassport = require('passport')
+const adminpassport = require('passport')
 
 require('./config/passport')(passport);
 require('./config/staffpassport')(staffpassport);
+require('./config/adminpassport')(adminpassport);
 
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
@@ -67,6 +69,10 @@ app.use(passport.session());
 //_StaffPassport middleware
 app.use(staffpassport.initialize());
 app.use(staffpassport.session());
+
+//_AdminPassport middleware
+app.use(adminpassport.initialize());
+app.use(adminpassport.session());
 
 // Connect Flash
 app.use(flash())
