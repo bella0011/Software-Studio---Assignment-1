@@ -18,6 +18,7 @@ const methodOverride = require('method-override')
 const indexRouter = require('./routes/index')
 const bookRouter = require('./routes/books')
 const userRouter = require('./routes/users')
+const staffRouter = require('./routes/staff')
 const adminRouter = require('./routes/admin')
 const bookRequestRouter = require('./routes/bookRequests')
 
@@ -76,6 +77,7 @@ app.use((req, res, next) => {
 app.use('/', indexRouter)
 app.use('/books', bookRouter)
 app.use('/users', userRouter)
+app.use('/staff', staffRouter)
 app.use('/admin', adminRouter)
 app.use('/bookRequests', bookRequestRouter)
 
