@@ -9,8 +9,10 @@ const expressLayouts = require('express-ejs-layouts')
 const flash = require('connect-flash')
 const session = require('express-session')
 const passport = require('passport')
+const staffpassport = require('passport')
 
 require('./config/passport')(passport);
+require('./config/staffpassport')(staffpassport);
 
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
@@ -61,6 +63,10 @@ app.use(session ({
 //_Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+//_StaffPassport middleware
+app.use(staffpassport.initialize());
+app.use(staffpassport.session());
 
 // Connect Flash
 app.use(flash())
