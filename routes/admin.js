@@ -15,7 +15,7 @@ router.get('/adminlogin', (req, res) => res.render('admin/adminLogin'));
 
 //Admin Login Button
 router.post('/login', (req, res, next) => {
-    passport.authenticate('local/admin', {
+    adminpassport.authenticate('local/admin', {
         successRedirect: '/admin/adminDashboard',
         failureRedirect: '/admin/adminLogin',
         failureFlash: true
