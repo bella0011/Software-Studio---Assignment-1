@@ -5,7 +5,7 @@ const router = express.Router();
 const User = require('../models/user')
 const Book = require('../models/book')
 const bcrypt = require('bcryptjs');
-const passport = require('passport');
+const adminpassport = require('passport');
 const { forwardAuthenticated } = require('../config/auth');
 
 
@@ -15,7 +15,7 @@ router.get('/adminlogin', (req, res) => res.render('admin/adminLogin'));
 
 //Admin Login Button
 router.post('/login', (req, res, next) => {
-    passport.authenticate('local', {
+    passport.authenticate('local/admin', {
         successRedirect: '/admin/adminDashboard',
         failureRedirect: '/admin/adminLogin',
         failureFlash: true
