@@ -1,5 +1,11 @@
 
-<%- include('../partials/adminHeader.ejs') %>
+<!--<%- include('../partials/adminHeader.ejs') %>-->
+<script>
+  $(document).ready(function () {
+    $('header').empty();
+    $('footer').empty();
+  });
+</script>
   <head>
   <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -137,10 +143,37 @@
 
           /* NAVBAR END*/
 
+          .welUser{
+            font-size: medium;
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
         </style>
       </head>
 
 <body>
-  <h1>Welcome Administrator</h1>
+  
+  <nav>
+    <input type="checkbox" id="check">
+    <label for="check" class="checkbtn">
+      <i class="fas fa-bars"></i>
+    </label>
+    <label class="logo">
+      <a href="/admin/adminDashboard"><img src="https://cdn.pixabay.com/photo/2016/01/23/16/02/book-1157658_1280.png" alt=""
+          height="55px" width="55x"></a>
+    </label>
+    <label class="welUser">
+      <p>Welcome <%= name %></p>
+    </label>
+    <ul>
+      <li> <a href="/adminSearch">Search</a> </li>
+      <li> <a href="/books/new">Add Books</a> </li>
+      <li> <a href="/adminSearch">Update Books</a> </li>
+      <li> <a href="/fines">Remove Books</a> </li>
+      <li> <a href="/staffBookRequests">Requests</a> </li>
+      <li> <a href="/users/logout">Logout</a> </li>
+    </ul>
+  </nav>
 
 </body>

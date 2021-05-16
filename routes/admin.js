@@ -12,6 +12,8 @@ const { forwardAuthenticated } = require('../config/auth');
 //Admin Login Page
 router.get('/adminlogin', (req, res) => res.render('admin/adminLogin'));
 
+//Admin staffBookRequests
+router.get('/admin/staffBookRequests', (req, res) => res.render('admin/staffBookRequests'));
 
 //Admin Login Button
 router.post('/login', (req, res, next) => {
