@@ -3,6 +3,9 @@ const router = express.Router()
 const Book = require('../models/book')
 const imageMimeTypes = ['image/jpeg', 'image/png', 'image/gif']
 
+//Admin staffBookRequests
+router.get('/admin/staffBookRequests', (req, res) => res.render('admin/staffBookRequests'));
+
 // All Books Route    
 router.get('/', async (req, res) => {
     let query = Book.find()
@@ -25,6 +28,8 @@ router.get('/', async (req, res) => {
         res.redirect('/')
     }
 })
+
+
 
 //New Book Route  
 router.get('/new', async (req, res) => {
