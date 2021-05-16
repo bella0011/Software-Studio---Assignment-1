@@ -1,14 +1,15 @@
-﻿
-<script>$(document).ready(function () {
+﻿<script>
+    $(document).ready(function () {
         $('header').empty();
         $('footer').empty();
-    });</script>
+    });
+</script>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <title>Search Books</title>
     <style>
@@ -36,27 +37,27 @@
             margin-right: 20px
         }
 
-            nav ul li {
-                display: inline-block;
-                line-height: 80px;
-                margin: 0 5px;
-            }
+        nav ul li {
+            display: inline-block;
+            line-height: 80px;
+            margin: 0 5px;
+        }
 
-                nav ul li a {
-                    font-size: 17px;
-                    color: white;
-                    text-transform: uppercase;
-                    padding: 7px 13px;
-                    border-radius: 3px;
-                }
+        nav ul li a {
+            font-size: 17px;
+            color: white;
+            text-transform: uppercase;
+            padding: 7px 13px;
+            border-radius: 3px;
+        }
 
-                    a.active,
-                    nav ul li a:hover {
-                        background: #49cee8;
-                        transition: 0.5s;
-                        text-decoration: none;
-                        color: white;
-                    }
+        a.active,
+        nav ul li a:hover {
+            background: #49cee8;
+            transition: 0.5s;
+            text-decoration: none;
+            color: white;
+        }
 
         .checkbtn {
             font-size: 30px;
@@ -125,9 +126,9 @@
                 line-height: 30px;
             }
 
-                nav ul li a {
-                    font-size: 20px;
-                }
+            nav ul li a {
+                font-size: 20px;
+            }
 
             a:hover,
             a.active {
@@ -135,7 +136,7 @@
                 color: darkslateblue;
             }
 
-            #check:checked ~ ul {
+            #check:checked~ul {
                 left: 0;
             }
         }
@@ -152,11 +153,11 @@
             font-weight: bold;
         }
 
-            .btn1:hover {
-                background-color: #ED254E;
-                border: 2px solid;
-                color: rgb(0, 0, 0);
-            }
+        .btn1:hover {
+            background-color: #ED254E;
+            border: 2px solid;
+            color: rgb(0, 0, 0);
+        }
 
 
         /* BOOKS DISPLAY*/
@@ -190,9 +191,9 @@
             flex-basis: 0;
         }
 
-            .form-item:first-child {
-                margin-left: 0;
-            }
+        .form-item:first-child {
+            margin-left: 0;
+        }
 
         .form-item-no-grow {
             flex-grow: 0;
@@ -223,7 +224,8 @@
         <i class="fas fa-bars"></i>
     </label>
     <label class="logo">
-        <a href="/dashboard"><img src="https://cdn.pixabay.com/photo/2016/01/23/16/02/book-1157658_1280.png" alt="" height="55px" width="55px"></a>
+        <a href="/dashboard"><img src="https://cdn.pixabay.com/photo/2016/01/23/16/02/book-1157658_1280.png" alt=""
+                height="55px" width="55px"></a>
     </label>
 
     <ul>
@@ -239,9 +241,10 @@
     <div class="container">
         <div class="row no-gutters">
 
-            <div class="col-lg-5  px-5 pt-5">
+            <div class="col-lg-5  px-5 pt-5 pb-5">
                 <img src="<%= book.coverImagePath %>" width="300" height="450" />
             </div>
+
             <div class="col-lg-7  px-5 pt-5">
                 <h1 class="font-weight-bold py-3"> Title: <%= book.title %> </h1>
                 <div class="form-row">
@@ -262,17 +265,23 @@
                 <div class="form-row">
                     <a href="/books/<%=book._id%>/edit"> Edit </a>
                 </div>
-                <div class="form-row">
-                    <%- include('../partials/deleteForm', { url: `/books/${book.id}` }) %>
+
+                <div class="form-row" style="padding: 20px">
+                    <div style="padding: 20px">
+                        <form method="POST" class="d-inline" action="<%=book._id%>?_method=DELETE">
+                            <input class="btn btn-xs btn-danger" type="submit" value="Delete">
+                        </form>
+                    </div>
+
+                    <div style="padding: 20px; padding-left;">
+                        <form action="/books/<%=book._id%>/issue/<%=currentUser._id%>" method="POST" class="d-inline">
+                            <input class="btn btn-xs btn-success" type="submit" value="Issue">
+
+                        </form>
+                    </div>
                 </div>
-                <div class="form-row">
-                    <form action="/books/<%=book._id%>/issue/<%=currentUser._id%>" method="POST" class="d-inline"
-                          style="margin:0;">
-                        <input class="btn btn-xs btn-success" type="submit" value="Issue">
-                    </form>
-                </div>
-                
+
             </div>
         </div>
-        </div>
+    </div>
 </section>
