@@ -3,7 +3,6 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const router = express.Router();
 const User = require('../models/user');
-const Staff = require('../models/staff');
 const Book = require("../models/book");
 const Issue = require("../models/issue");
 const bcrypt = require('bcryptjs');
@@ -11,7 +10,6 @@ const passport = require('passport');
 const { forwardAuthenticated } = require('../config/auth');
 
 const userController = require('../controllers/user');
-const staff = require('../models/staff');
 
 
 //Login Page
@@ -83,9 +81,9 @@ router.post('/register', (req, res) => {
             }))
                 }
                 else {
-                    Staff.findOne( {email: email})
-                    .then(staff => {
-                        if(staff) {
+                    User.findOne( {email: email})
+                    .then(user => {
+                        if(user) {
                             errors.push({ msg: 'Email is already registered'})
                             res.render('users/register', {
                             errors,
@@ -96,20 +94,21 @@ router.post('/register', (req, res) => {
                             })
                         }
                         else {
-                            const newStaff = new Staff({
+                            const newUser = new User({
                                 name: req.body.name,
                                 email: req.body.email,
-                                password: req.body.password
+                                password: req.body.password,
+                                staffFlag: true
                             })
                             // Hash Password
                             bcrypt.genSalt(10, (err, salt) => 
-                            bcrypt.hash(newStaff.password, salt, (err, hash) => {
+                            bcrypt.hash(newUser.password, salt, (err, hash) => {
                             if (err) throw err;
                             // Set password to hashed
-                            newStaff.password = hash;
+                            newUser.password = hash;
                             // Save User
-                            newStaff.save()
-                            .then(staff => {
+                            newUser.save()
+                            .then(user => {
                                 req.flash('success_msg', 'You are now registered and can log in')
                                 res.redirect('/staff/staffLogin')
                             })

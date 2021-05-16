@@ -21,6 +21,16 @@ const userSchema = new mongoose.Schema({
         default: false
     },
 
+    isAdmin: {
+        type: Boolean,
+        default: false
+    },
+
+    staffFlag: {
+        type: Boolean,
+        default: false
+    },
+
     bookIssueInfo: [
         {
             book_info: {
