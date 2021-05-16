@@ -116,4 +116,28 @@ router.get('/borrows', (req, res) => {
     res.render('borrows')
 })
 
+//Admin Fine Page
+
+router.get('/admin/finedata',ensureAuthenticated,(req, res) => {
+    const data = {
+        headers: ["User","Book", "Price"],
+        rows: new Array(5).fill(undefined).map(() => { //rows: new Vector.fill(undefined).map(() => {
+            return [
+                chance.name(),
+                chance.name(),
+                chance.age(),
+            ]
+        })
+    };
+    res.json({
+        headers: data.headers,
+        rows: shuffleArray(data.rows),
+        lastUpdated: new Date().toISOString()
+    })
+});
+
+router.get('/admin/adminFines', (req, res) => {
+    res.render('admin/adminFines')
+})
+
 module.exports = router 
