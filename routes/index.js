@@ -118,7 +118,7 @@ router.get('/borrows', (req, res) => {
 
 //Admin Fine Page
 
-router.get('/finedata',ensureAuthenticated,(req, res) => {
+router.get('/admin/finedata',ensureAuthenticated,(req, res) => {
     const data = {
         headers: ["User","Book", "Price"],
         rows: new Array(5).fill(undefined).map(() => { //rows: new Vector.fill(undefined).map(() => {
@@ -136,8 +136,8 @@ router.get('/finedata',ensureAuthenticated,(req, res) => {
     })
 });
 
-router.get('admin/adminFines', (req, res) => {
-    res.render('adminfines')
+router.get('/admin/adminFines', (req, res) => {
+    res.render('admin/adminFines')
 })
 
 module.exports = router 
