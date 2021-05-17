@@ -48,5 +48,48 @@ exports.postIssueBook = async(req, res, next) => {
 
     } catch(err) {
         console.log(err);
+        return res.redirect("back");
+    }
+}
+
+exports.postReturnBook = async(req, res, next) => {
+    try {
+        const book_id = req.params.book_id;
+        const pos = req.user.bookIssueInfo.indexOf(req.params.book_id);
+        
+        // fetch the book from the database and update stock
+        const book = await Book.findById(book_id);
+        book.stock += 1;
+        await book.save();
+
+        // remove the issue object
+        const issue = await Issue.findOne({"user_id.id": req.user._id});
+        await issue.remove();
+
+        // remove the issue info from user attributes
+        req.user.bookIssueInfo.splice(pos, 1);
+        await req.user.save();
+
+        res.redirect("/borrows")
+    }catch(err) {
+        console.log(err);
+        return res.redirect("back");
+    }
+}
+
+exports.postRenewBook = async(req,res,next) =>{
+    try {
+        const searchObj = {
+            "user_id.id": req.user_id,
+            "book_info.id": req.params.book_id,
+        }
+        const issue = await Issue.findOne(searchObj);
+        // adding  7 extra days to the returnDate attribute of selected issue
+        let time = issue.book_info.returnDate.getTIme()
+        issue.book_info.returnDate = time + 7*24*60*60*1000;
+        lissue.book_info.isRenewed = true;
+        await issue.save
+    } catch (err) {
+        console.log(err);
     }
 }
