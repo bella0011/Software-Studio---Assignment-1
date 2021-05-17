@@ -12,6 +12,19 @@ const { forwardAuthenticated } = require('../config/auth');
 //Admin Login Page
 router.get('/adminlogin', (req, res) => res.render('admin/adminLogin'));
 
+//Dashboard Page
+
+router.get('/adminDashboard', async (req, res) => {
+    let book
+    try {
+        book = await Book.find().sort({ createAt: 'desc' }).limit(10).exec()
+    } catch {
+        book = []
+    }
+    res.render('adminDashboard', { books: book , name: req.user.name})
+    
+})
+
 //Admin BookRequests
 router.get('/bookRequests/index', (req, res) => res.render('bookRequests/index'));
 
