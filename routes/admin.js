@@ -15,6 +15,9 @@ router.get('/adminlogin', (req, res) => res.render('admin/adminLogin'));
 //Admin BookRequests
 router.get('/bookRequests/index', (req, res) => res.render('bookRequests/index'));
 
+//Admin BookRequests
+router.get('/admin/adminSearch', (req, res) => res.render('admin/adminSearch'));
+
 //Admin Login Button
 router.post('/login', (req, res, next) => {
     adminpassport.authenticate('local/admin', {

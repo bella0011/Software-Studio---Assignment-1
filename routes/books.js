@@ -3,7 +3,8 @@ const router = express.Router()
 const Book = require('../models/book')
 const imageMimeTypes = ['image/jpeg', 'image/png', 'image/gif']
 
-
+//Admin adminDashboard
+router.get('/admin/adminDashboard', (req, res) => res.render('admin/adminDashboard'));
 
 // All Books Route    
 router.get('/', async (req, res) => {
