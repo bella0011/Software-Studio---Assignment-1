@@ -15,7 +15,7 @@ router.get('/adminlogin', (req, res) => res.render('admin/adminLogin'));
 //Admin BookRequests
 router.get('/bookRequests/index', (req, res) => res.render('bookRequests/index'));
 
-//Admin BookRequests
+//Admin adminSearch
 router.get('/admin/adminSearch', (req, res) => res.render('admin/adminSearch'));
 
 //Admin Login Button
