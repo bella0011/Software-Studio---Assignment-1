@@ -1,4 +1,4 @@
-﻿<script>
+<script>
     $(document).ready(function () {
         $('header').empty();
         $('footer').empty();
@@ -10,13 +10,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Add Book</title>
+    <title>Search Books</title>
     <style>
         * {
             padding: 0;
-            margin-left: 0;
+            margin: 0;
             box-sizing: border-box;
             font-size: 1em;
         }
@@ -26,11 +26,13 @@
             background-color: #011936;
             height: 82px;
             width: 100%;
+
         }
 
         label.logo {
             line-height: 80px;
             padding: 0px 80px;
+
         }
 
         nav ul {
@@ -38,27 +40,28 @@
             margin-right: 20px
         }
 
-            nav ul li {
-                display: inline-block;
-                line-height: 80px;
-                margin: 0 5px;
-            }
+        nav ul li {
+            display: inline-block;
+            line-height: 80px;
+            margin: 0 5px;
+        }
 
-                nav ul li a {
-                    font-size: 17px;
-                    color: white;
-                    text-transform: uppercase;
-                    padding: 7px 13px;
-                    border-radius: 3px;
-                }
+        nav ul li a {
+            font-size: 17px;
+            color: white;
+            text-transform: uppercase;
+            padding: 7px 13px;
+            border-radius: 3px;
 
-                    a.active,
-                    nav ul li a:hover {
-                        background: #49cee8;
-                        transition: 0.5s;
-                        text-decoration: none;
-                        color: white;
-                    }
+        }
+
+        a.active,
+        nav ul li a:hover {
+            background: #49cee8;
+            transition: 0.5s;
+            text-decoration: none;
+            color: white;
+        }
 
         .checkbtn {
             font-size: 30px;
@@ -88,10 +91,6 @@
             border-radius: 15px;
         }
 
-        form {
-            width: 400px;
-            height: 800px;
-        }
 
         @media (max-width: 952px) {
             label.logo {
@@ -127,9 +126,9 @@
                 line-height: 30px;
             }
 
-                nav ul li a {
-                    font-size: 20px;
-                }
+            nav ul li a {
+                font-size: 20px;
+            }
 
             a:hover,
             a.active {
@@ -137,12 +136,15 @@
                 color: darkslateblue;
             }
 
-            #check:checked ~ ul {
+            #check:checked~ul {
                 left: 0;
             }
         }
 
         /* NAVBAR END*/
+
+
+
         .btn1 {
             border: none;
             outline: none;
@@ -154,12 +156,11 @@
             font-weight: bold;
         }
 
-            .btn1:hover {
-                background-color: #ED254E;
-                border: 2px solid;
-                color: rgb(0, 0, 0);
-            }
-
+        .btn1:hover {
+            background-color: #ED254E;
+            border: 2px solid;
+            color: rgb(0, 0, 0);
+        }
 
         /* BOOKS DISPLAY*/
 
@@ -173,49 +174,11 @@
 
         .grid-item {
             padding: 5rem;
+
             display: flex;
             justify-content: center;
             align-items: center;
         }
-
-        /* FORM STYLES */
-        .form-row {
-            display: flex;
-            margin-bottom: 0.5rem;
-        }
-
-        .form-item {
-            display: flex;
-            flex-direction: column;
-            margin-left: 2rem;
-            flex-grow: 1;
-            flex-basis: 0;
-        }
-
-        .form-item:first-child {
-                margin-left: 0;
-            }
-
-        .form-item-no-grow {
-            flex-grow: 0;
-        }
-
-        .form-item textarea {
-            height: 100%;
-            resize: none;
-        }
-
-        .filepond--root {
-            margin-bottom: 0;
-        }
-        .filepond--drop-label {
-            font-size: xx-small;
-        }
-
-        .filepond--panel-root {
-        background-color: #F9DC5C;
-        }
-
     </style>
 </head>
 
@@ -225,42 +188,60 @@
         <i class="fas fa-bars"></i>
     </label>
     <label class="logo">
-        <a href="/admin/adminDashboard"><img src="https://cdn.pixabay.com/photo/2016/01/23/16/02/book-1157658_1280.png" alt="" height="55px" width="55px"></a>
+        <a href="/admin/adminDashboard"><img src="https://cdn.pixabay.com/photo/2016/01/23/16/02/book-1157658_1280.png"
+                alt="" height="55px" width="55x"></a>
     </label>
-    
+
     <ul>
         <li> <a href="/adminSearch">Search</a> </li>
-      <li> <a href="/books/new">Add Books</a> </li>
-      <li> <a href="/bookRequests">Requests</a> </li>
-      <li><a href="/adminFines">All Fines</a></li>
-      <li> <a href="/users/logout">Logout</a> </li>
+        <li> <a href="/books/new">Add Books</a> </li>
+        <li> <a href="/bookRequests">Requests</a> </li>
+        <li><a href="/adminFines">All Fines</a></li>
+        <li> <a href="/users/logout">Logout</a> </li>
     </ul>
 </nav>
 
-
 <section class="Form my-4 mx-5" style="padding-top: 10vh">
     <div class="container">
-        <div class="row no-gutters">
+        <div class="row no-gutters" style="padding-top: 100px">
 
-            <div class="col-lg-5  px-5 pt-5">
-                <img src="https://img.icons8.com/ios/452/add-book.png" class="img-fluid" id="regImg" alt="Register-Image" width="300" style="padding-top: 100px;">
+            <div class="col-lg-5">
+                <img src="https://cdn.pixabay.com/photo/2017/05/15/23/48/survey-2316468_960_720.png" class="img-fluid"
+                    id="regImg" alt="Register-Image" width="60%" style="padding-bottom: 100px; padding-left: 100px;">
             </div>
-            <div class="col-lg-7  px-5 pt-5">
-                <h1 class="font-weight-bold py-3">New Book</h1>
-
-                <form action="/books" method="POST">
-                        <div class="form-row">
-                        <%- include('_form_fields') %>
-                        </div>
-                        <div class="form-row">
-                            <a href="/books"> Cancel </a>
-                        </div>
-                        <div class="form-row">
-                            <button type="submit" class="btn1 mt-3 mb-5"> Create </button>
-                        </div>
-                </form>
+            <div class="col-lg-7 px-5 pt-5" style="padding-top: 100px">
+                <h1 class="font-weight-bold py-3">Book Request Forms</h1>
 
             </div>
+
         </div>
-        </div>
+
+
+    </div>
+
+
 </section>
+
+<!---->
+<div class="container">
+    <div class="col-lg-7 px-6 pt-5">
+        <div class="grid-wrapper">
+
+
+
+            <% books.forEach(book=> { %>
+            <div class="grid-item">
+
+                <a href="/bookRequests/<%=book.id%>">
+
+                    <img height="150" width="100" src="<%= book.coverImagePath %>">
+
+                </a>
+            </div>
+            <% }) %>
+
+        </div>
+
+    </div>
+</div>
+<!---->

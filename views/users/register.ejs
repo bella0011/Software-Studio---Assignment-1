@@ -1,3 +1,10 @@
+<script>
+    $(document).ready(function () {
+        $('header').empty();
+        $('footer').empty();
+    });
+</script>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -6,54 +13,170 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <title>Register</title>
-    <style>
-        *{
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-            font-size: 1em;
-        }
-        body{
-            background: rgb(206, 233, 233);
-        }
-        .row{
-            background: white;
-            border-radius: 30px;
-            box-shadow: 12px 12px 22px rgb(127, 207, 194);
-        }
-        img{
-            border-top-left-radius: 30px;
-            border-bottom-left-radius: 30px;
-        }
-        .btn1{
-            border: none;
-            outline: none;
-            height: 50px;
-            width: 100%;
-            background-color: darkcyan;
-            color: white;
-            border-radius: 4px;
-            font-weight: bold;
-        }
-        .btn1:hover{
-            background-color: rgb(179, 245, 179);
-            border: 2px solid;
-            color: rgb(0, 0, 0);
-        }
-    </style>
 </head>
 
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-size: 1em;
+    }
+
+    /* NAVBAR BEGIN*/
+    nav {
+        background-color: #011936;
+        height: 82px;
+        width: 100%;
+
+    }
+
+    label.logo {
+        line-height: 80px;
+        padding: 0px 80px;
+
+    }
+
+    nav ul {
+        float: right;
+        margin-right: 20px
+    }
+
+    nav ul li {
+        display: inline-block;
+        line-height: 80px;
+        margin: 0 5px;
+    }
+
+    nav ul li a {
+        font-size: 17px;
+        color: white;
+        text-transform: uppercase;
+        padding: 7px 13px;
+        border-radius: 3px;
+
+    }
+
+    a.active,
+    nav ul li a:hover {
+        background: #49cee8;
+        transition: 0.5s;
+        text-decoration: none;
+        color: white;
+    }
+
+    .checkbtn {
+        font-size: 30px;
+        color: white;
+        float: right;
+        line-height: 80px;
+        margin-right: 40px;
+        cursor: pointer;
+        display: none;
+    }
+
+    #check {
+        display: none;
+    }
+
+    body {
+        background: #F9DC5C;
+    }
+
+    .row {
+        background: #f5f5f5;
+        border-radius: 30px;
+        box-shadow: 12px 12px 22px #465362;
+        
+    }
+
+    img {
+        border-top-left-radius: 30px;
+        border-bottom-left-radius: 30px;
+    }
+
+    .btn1 {
+        border: none;
+        outline: none;
+        height: 50px;
+        width: 100%;
+        background-color: #011936;
+        color: white;
+        border-radius: 4px;
+        font-weight: bold;
+    }
+
+    .btn1:hover {
+        background-color: #ED254E;
+        border: 2px solid;
+        color: rgb(0, 0, 0);
+    }
+
+
+    @media (max-width: 952px) {
+        label.logo {
+            font-size: 30px;
+            padding-left: 50px;
+        }
+
+        nav ul li a {
+            font-size: 16px;
+        }
+    }
+
+    @media (max-width: 858px) {
+        .checkbtn {
+            display: block;
+        }
+
+        ul {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background: #ED254E;
+            top: 80px;
+            left: -100%;
+            text-align: center;
+            transition: all .5s;
+            z-index: 10;
+        }
+
+        nav ul li {
+            display: block;
+            margin: 50px 0;
+            line-height: 30px;
+        }
+
+        nav ul li a {
+            font-size: 20px;
+        }
+
+        a:hover,
+        a.active {
+            background-color: none;
+            color: darkslateblue;
+        }
+
+        #check:checked~ul {
+            left: 0;
+        }
+    }
+
+    /* NAVBAR END*/
+</style>
+
 <body>
-        <%- include ("../partials/messages") %>
+    <%- include ("../partials/messages") %>
 
 
-        <section class="Form my-4 mx-5">
+        <section class="Form my-4 mx-5" style="padding-top: 10vh">
             <div class="container">
 
 
                 <div class="row no-gutters">
                     <div class="col-lg-5">
-                        <img src="library.jpg" class="img-fluid" id="regImg" alt="Register-Image" width="100%">
+                        <img src="https://cdn.pixabay.com/photo/2019/03/16/02/15/fantasies-4058353_1280.jpg"
+                            class="img-fluid" id="regImg" alt="Register-Image" width="100%" style="padding-top: 190px;">
                     </div>
 
                     <div class="col-lg-7 px-5 pt-5">
@@ -64,51 +187,52 @@
                             <div class="form-row">
                                 <div class="col-lg-7">
                                     <label for="name"></label>
-                                        <input type="text" class="form-control my-3 p-4" id="name" name="name" placeholder="Enter Name"
-                                        value="<%= typeof name != 'undefined' ? name : '' %>" required />
+                                    <input type="text" class="form-control my-3 p-4" id="name" name="name"
+                                        placeholder="Enter Name" value="<%= typeof name != 'undefined' ? name : '' %>"
+                                        required />
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="col-lg-7">
                                     <label for="email"></label>
-                                        <input type="email" class="form-control my-3 p-4" id="email" name="email" placeholder="Enter Email"
-                                        value="<%= typeof name != 'undefined' ? name : '' %>" required />
+                                    <input type="email" class="form-control my-3 p-4" id="email" name="email"
+                                        placeholder="Enter Email"
+                                        value="<%= typeof email != 'undefined' ? email : '' %>" required />
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="col-lg-7">
                                     <label for="password"></label>
-                                        <input type="password" class="form-control my-3 p-4" id="password" name="password" placeholder="Enter Password"
-                                        value="<%= typeof name != 'undefined' ? name : '' %>" required />
+                                    <input type="password" class="form-control my-3 p-4" id="password" name="password"
+                                        placeholder="Enter Password"
+                                        value="<%= typeof password != 'undefined' ? password : '' %>" required />
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="col-lg-7">
                                     <label for="password2"></label>
-                                        <input type="password" class="form-control my-3 p-4" id="password2" name="password2" placeholder="Confirm Password"
-                                        value="<%= typeof name != 'undefined' ? name : '' %>" required />
+                                    <input type="password" class="form-control my-3 p-4" id="password2" name="password2"
+                                        placeholder="Confirm Password"
+                                        value="<%= typeof password2 != 'undefined' ? password2 : '' %>" required />
                                 </div>
                             </div>
 
-                            
+
                             <div class="form-row">
                                 <div class="col-lg-7">
-                                    <button type="submit" class="registerBtn btn1 mt-3 mb-5">Register</button>
+                                    <button type="submit" class="btn1 mt-3 mb-5">Register</button>
                                 </div>
                             </div>
 
-                   
 
-                            
-
-                            
-                        <p class="mb-20">Already have an account?<a href="/users/login"> Log in </a>here</p>
-                    </form>
-                </div>
+                            <div class="padding-bottom: 20px">
+                                <p class="mb-20">Already have an account?<a href="/users/login"> Log in </a>here</p>
+                            </div>
+                        </form>
+                    </div>
                 </div>
         </section>
 </body>
-

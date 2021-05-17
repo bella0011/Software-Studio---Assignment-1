@@ -1,10 +1,15 @@
 const express = require('express');
 
+const nodemailer = require('nodemailer');
 const router = express.Router();
-const User = require('../models/user')
+const User = require('../models/user');
+const Book = require("../models/book");
+const Issue = require("../models/issue");
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const { forwardAuthenticated } = require('../config/auth');
+
+const userController = require('../controllers/user');
 
 
 //Login Page
@@ -13,7 +18,7 @@ router.get('/login',(req, res) => res.render('users/login'));
 //Register Page
 router.get('/register',(req, res) => res.render('users/register'));
 
-//Register Handle
+//Register Handle  
 router.post('/register', (req, res) => {
     const { name, email, password, password2 } = req.body;
     let errors = [];
@@ -28,6 +33,12 @@ router.post('/register', (req, res) => {
         errors.push({ msg: 'Password do not match'})
     }
 
+    //Check password length
+    if (password.length < 6) {
+        errors.push({ msg: 'Password should be at least 6 characters' })
+    }
+
+    // Check Whether for requires not filled
     if(errors.length > 0) {
         res.render('users/register', {
             errors,
@@ -37,11 +48,12 @@ router.post('/register', (req, res) => {
             password2
         })
     } else {
-        // Validation Passed
+
+        // Validation Passed  
         User.findOne( {email: email})
         .then(user => {
             if(user) {
-                // User exists
+                // Check If User Exist
                 errors.push({ msg: 'Email is already registered'})
                 res.render('users/register', {
                     errors,
@@ -51,32 +63,90 @@ router.post('/register', (req, res) => {
                     password2
                 })
             } else {
-                const newUser = new User({
-                    name: req.body.name,
-                    email: req.body.email,
-                    password: req.body.password
-                })
-
-                // Hash Password
-                bcrypt.genSalt(10, (err, salt) => 
+                if (req.body.email.includes("student")) {// Add New User
+                    const newUser = new User({
+                        name: req.body.name,
+                        email: req.body.email,
+                        password: req.body.password
+                    })
+                    // Hash Password
+                    bcrypt.genSalt(10, (err, salt) => 
                     bcrypt.hash(newUser.password, salt, (err, hash) => {
-                        if (err) throw err;
-                        // Set password to hashed
-                        newUser.password = hash;
-                        // Save User
-                        newUser.save()
+                    if (err) throw err;
+                    // Set password to hashed
+                    newUser.password = hash;
+                    // Save User
+                    newUser.save()
+                        .then(user => {
+                            req.flash('success_msg', 'You are now registered and can log in')
+                            res.redirect('/users/login')
+                        })
+                        .catch(err => console.log(err))
+
+            }))
+                }
+                else {
+                    User.findOne( {email: email})
+                    .then(user => {
+                        if(user) {
+                            errors.push({ msg: 'Email is already registered'})
+                            res.render('users/register', {
+                            errors,
+                            name,
+                            email,
+                            password,
+                            password2
+                            })
+                        }
+                        else {
+                            const newUser = new User({
+                                name: req.body.name,
+                                email: req.body.email,
+                                password: req.body.password,
+                                staffFlag: true
+                            })
+                            // Hash Password
+                            bcrypt.genSalt(10, (err, salt) => 
+                            bcrypt.hash(newUser.password, salt, (err, hash) => {
+                            if (err) throw err;
+                            // Set password to hashed
+                            newUser.password = hash;
+                            // Save User
+                            newUser.save()
                             .then(user => {
                                 req.flash('success_msg', 'You are now registered and can log in')
-                                res.redirect('/users/login')
+                                res.redirect('/staff/staffLogin')
                             })
                             .catch(err => console.log(err))
 
-                }))
+            }))
+                        }
+                    })
+                }
+
+                // Send Confirmation Email
+                let transporter = nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        user: process.env.EMAIL,
+                        pass: process.env.PASSWORD
+                    }
+                })
+                let mailOptions = {
+                    from: 'westernelibrary@gmail.com',
+                    to: req.body.email,
+                    subject: 'Confirmation Email',
+                    text: 'Email Confirmed'
+                }
+                transporter.sendMail(mailOptions);
+
+                
             }
-        })    
+        })
     }
 
 })
+
 
 // Login
 router.post('/login', (req, res, next) => {
@@ -87,11 +157,27 @@ router.post('/login', (req, res, next) => {
     })(req, res, next);
 });
 
-// Logout
+// Logout  
 router.get('/logout', (req, res) => {
     req.logout();
     req.flash('success_msg', 'You are logged out');
     res.redirect('/users/login');
 });
+
+//// issue a book
+//exports.postIssueBook = async (req, res, next) => {
+//    try {
+//        const book = await Book.findById(req.params.book_id);
+//        const user = await User.findById(req.params.user_id);
+
+//        book.stock -= 1;
+
+//    } catch {
+//        res.redirect('/');
+//    }
+//}
+
+//user controller -> issue a book 
+router.post("/books/:book_id/issue/:user_id", userController.postIssueBook);
 
 module.exports = router;

@@ -3,14 +3,18 @@
 }
 
 const express = require('express')
-const app = express()
+const app = express() 
 const expressLayouts = require('express-ejs-layouts')
 
 const flash = require('connect-flash')
 const session = require('express-session')
-const passport = require('passport');
+const passport = require('passport')
+const staffpassport = require('passport')
+const adminpassport = require('passport')
 
 require('./config/passport')(passport);
+require('./config/staffpassport')(staffpassport);
+require('./config/adminpassport')(adminpassport);
 
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
@@ -18,6 +22,11 @@ const methodOverride = require('method-override')
 const indexRouter = require('./routes/index')
 const bookRouter = require('./routes/books')
 const userRouter = require('./routes/users')
+const staffRouter = require('./routes/staff')
+const adminRouter = require('./routes/admin')
+const bookRequestRouter = require('./routes/bookRequests')
+
+const User = require("./models/user")
 
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
@@ -57,19 +66,31 @@ app.use(session ({
 app.use(passport.initialize());
 app.use(passport.session());
 
+//_StaffPassport middleware
+app.use(staffpassport.initialize());
+app.use(staffpassport.session());
+
+//_AdminPassport middleware
+app.use(adminpassport.initialize());
+app.use(adminpassport.session());
+
 // Connect Flash
 app.use(flash())
 
 //Global Variables
 app.use((req, res, next) => {
-    res.locals.success_msg = req.flash('success_msg')
-    res.locals.error_msg = req.flash('error_msg')
-    res.locals.error = req.flash('error')
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+    res.locals.currentUser = req.user;
     next()
 })
 
 app.use('/', indexRouter)
 app.use('/books', bookRouter)
 app.use('/users', userRouter)
+app.use('/staff', staffRouter)
+app.use('/admin', adminRouter)
+app.use('/bookRequests', bookRequestRouter)
 
 app.listen(process.env.PORT || 3000) 

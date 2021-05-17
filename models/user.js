@@ -14,7 +14,33 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+
+    violationFlag: {
+        type: Boolean,
+        default: false
+    },
+
+    isAdmin: {
+        type: Boolean,
+        default: false
+    },
+
+    staffFlag: {
+        type: Boolean,
+        default: false
+    },
+
+    bookIssueInfo: [
+        {
+            book_info: {
+                id: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: "Issue",
+                }
+            },
+        },
+    ],
 })
 
 module.exports = mongoose.model('User', userSchema)

@@ -1,12 +1,12 @@
 ﻿<div class="form-row">
     <div class="form-item">
         <label> Title </label>
-        <input type="text" name="title" value="<%= book.title %>" class="form-control my-3 p-4" />
+        <input type="text" name="title" value="<%= bookRequest.title %>" class="form-control my-3 p-4" />
     </div>
 
     <div class="form-item">
         <label> Author </label>
-        <input type="text" name="author" value="<%- book.author %>" class="form-control my-3 p-4" />
+        <input type="text" name="author" value="<%- bookRequest.author %>" class="form-control my-3 p-4" />
     </div>
 
 </div>
@@ -15,25 +15,17 @@
     <div class="form-item">
         <label> Publish Date </label>
         <input type="date" name="publishDate"
-            value="<%= book.publishDate == null ? '': book.publishDate.toISOString().split('T')[0] %>"
+            value="<%= bookRequest.publishDate == null ? '': bookRequest.publishDate.toISOString().split('T')[0] %>"
             class="form-control my-3 p-4" />
     </div>
 
     <div class="form-item">
         <label> Page Count </label>
-        <input type="number" name="pageCount" min="1" value="<%- book.pageCount %>" class="form-control my-3 p-4" />
+        <input type="number" name="pageCount" min="1" value="<%- bookRequest.pageCount %>" class="form-control my-3 p-4" />
     </div>
 
 </div>
 
-<div class="form-row">
-    <div class="form-item col-lg-7">
-        <label> Stock </label>
-        <textarea name="stock" class="form-control my-3 p-4"><%-book.stock%></textarea>
-    </div>
-
-
-</div>
 
 <div class="form-row col-lg-4">
     <div class="form-item ">
@@ -44,11 +36,11 @@
 
 
 
-<div class="col-lg-10">
+<div class="col-lg-10" style="padding-top: 10px;">
     <div class="form-row">
         <div class="form-item ">
             <label> Description </label>
-            <textarea name="description" class="form-control my-3 p-4"><%-book.description%> </textarea>
+            <textarea name="description" class="form-control my-3 p-4"><%-bookRequest.description%> </textarea>
         </div>
     </div>
 </div>

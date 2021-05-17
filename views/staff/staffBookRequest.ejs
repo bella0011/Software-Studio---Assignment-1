@@ -1,0 +1,8 @@
+
+<%- include('../partials/staffHeader.ejs') %>
+<h2>Book Request</h2>
+<form action="/staff/staffBookRequest" method="POST">
+  <%- include('../bookRequests/_form_fields') %>
+    <a href="/staff/staffBookRequest"> Cancel </a>
+    <button type="submit"> Create </button>
+</form>

@@ -4,6 +4,8 @@
         $('footer').empty();
     });
 </script>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -11,12 +13,14 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./src/app.css">
 
-    <title>Dashboard</title>
+    <title>Search Books</title>
     <style>
         * {
             padding: 0;
-            margin-left: 0;
+            margin: 0;
             box-sizing: border-box;
             font-size: 1em;
         }
@@ -26,11 +30,13 @@
             background-color: #011936;
             height: 82px;
             width: 100%;
+
         }
 
         label.logo {
             line-height: 80px;
             padding: 0px 80px;
+
         }
 
         nav ul {
@@ -50,6 +56,7 @@
             text-transform: uppercase;
             padding: 7px 13px;
             border-radius: 3px;
+
         }
 
         a.active,
@@ -88,14 +95,6 @@
             border-radius: 15px;
         }
 
-
-
-        form {
-            width: 400px;
-            height: 600px;
-        }
-
-        /* Grid Wrapper begin */
         @media (max-width: 2440px) {
             .grid-wrapper {
                 display: grid;
@@ -168,6 +167,8 @@
             }
         }
 
+
+
         @media (max-width: 952px) {
             label.logo {
                 font-size: 30px;
@@ -177,6 +178,25 @@
             nav ul li a {
                 font-size: 16px;
             }
+
+            /* BOOKS DISPLAY*/
+
+            .grid-wrapper {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(4, minmax(100px, 200px));
+                grid-gap: 1rem;
+                grid-auto-flow: dense;
+            }
+
+            .grid-item {
+                padding: 5rem;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
         }
 
         @media (max-width: 858px) {
@@ -231,10 +251,12 @@
                 justify-content: center;
                 align-items: center;
             }
-
         }
 
         /* NAVBAR END*/
+
+
+
         .btn1 {
             border: none;
             outline: none;
@@ -251,16 +273,6 @@
             border: 2px solid;
             color: rgb(0, 0, 0);
         }
-
-
-
-
-
-        .welUser {
-            font-size: medium;
-            color: white;
-            font-family: 'Courier New', Courier, monospace;
-        }
     </style>
 </head>
 
@@ -273,10 +285,7 @@
         <a href="/dashboard"><img src="https://cdn.pixabay.com/photo/2016/01/23/16/02/book-1157658_1280.png" alt=""
                 height="55px" width="55px"></a>
     </label>
-    <label class="welUser">
-        <p>Welcome <%= name %>
-        </p>
-    </label>
+
     <ul>
         <li> <a href="/books">Search</a> </li>
         <li> <a href="/lgIndex">Browse</a> </li>
@@ -286,25 +295,18 @@
     </ul>
 </nav>
 
-<div class="container">
-    <div class="col-lg-7 px-6 pt-5">
-        <h1> Recently Added </h1>
-        <div class="grid-wrapper">
-
-
-
-            <% books.forEach(book=> { %>
-                <div class="grid-item">
-
-                    <a href="/books/<%=book.id%>">
-
-                        <img height="150" width="100" src="<%= book.coverImagePath %>">
-
-                    </a>
+<body>
+    <section class="my-10 mx-10" style="padding-top: 10vh">
+        <div class="container">
+            <div class="no-gutters">
+                <div>
+                    <h2 style="font-family: 'Courier New', Courier, monospace;"> Fines </h2>
                 </div>
-                <% }) %>
-
+                <div class="table-refresh" data-url="/data">
+                </div>
+            </div>
         </div>
-
-    </div>
-</div>
+     </section>
+        <script src="./src/app.js"></script>
+</body>
+</html>

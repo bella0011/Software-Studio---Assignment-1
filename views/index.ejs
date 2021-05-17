@@ -1,8 +1,270 @@
-﻿<h2>Recently Added</h2>
-<div>
-    <% books.forEach(book => { %>
-        <a href="/books/<%=book.id%>">
-            <img height="150" width="100" src="<%= book.coverImagePath %>">
-        </a>
-    <% }) %>
-</div>
+﻿<script>
+    $(document).ready(function () {
+        $('header').empty();
+        $('footer').empty();
+    });
+</script>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Recently Added</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        /* NAVBAR BEGIN*/
+        nav {
+            background-color: #011936;
+            height: 82px;
+            width: 100%;
+
+        }
+
+        label.logo {
+            line-height: 80px;
+            padding: 0px 80px;
+
+        }
+
+        nav ul {
+            float: right;
+            margin-right: 20px
+        }
+
+        nav ul li {
+            display: inline-block;
+            line-height: 80px;
+            margin: 0 5px;
+        }
+
+        nav ul li a {
+            font-size: 17px;
+            color: white;
+            text-transform: uppercase;
+            padding: 7px 13px;
+            border-radius: 3px;
+
+        }
+
+        a.active,
+        nav ul li a:hover {
+            background: #49cee8;
+            transition: 0.5s;
+            text-decoration: none;
+            color: white;
+        }
+
+        .checkbtn {
+            font-size: 30px;
+            color: white;
+            float: right;
+            line-height: 80px;
+            margin-right: 40px;
+            cursor: pointer;
+            display: none;
+        }
+
+        #check {
+            display: none;
+        }
+
+        body {
+            background: #F9DC5C;
+        }
+
+        .row {
+            background: #f5f5f5;
+            border-radius: 30px;
+            box-shadow: 12px 12px 22px #465362;
+        }
+
+        img {
+            border-radius: 15px;
+        }
+
+
+        /* Grid Wrapper BEGIN */
+
+        @media (max-width: 2440px) {
+            .grid-wrapper {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: repeat(4, minmax(100px, 200px));
+                grid-gap: 1rem;
+                grid-auto-flow: dense;
+            }
+
+            .grid-item {
+                padding: 5rem;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 1440px) {
+            .grid-wrapper {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(4, minmax(100px, 200px));
+                grid-gap: 1rem;
+                grid-auto-flow: dense;
+            }
+
+            .grid-item {
+                padding: 8rem;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 1215px) {
+            .grid-wrapper {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(4, minmax(100px, 200px));
+                grid-gap: 1rem;
+                grid-auto-flow: dense;
+            }
+
+            .grid-item {
+                padding: 6rem;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 1000px) {
+            .grid-wrapper {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(4, minmax(100px, 200px));
+                grid-gap: 1rem;
+                grid-auto-flow: dense;
+            }
+
+            .grid-item {
+                padding: 3rem;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+
+        @media (max-width: 952px) {
+            label.logo {
+                font-size: 30px;
+                padding-left: 50px;
+            }
+
+            nav ul li a {
+                font-size: 16px;
+            }
+
+
+        }
+
+        @media (max-width: 858px) {
+            .checkbtn {
+                display: block;
+            }
+
+            ul {
+                position: fixed;
+                width: 100%;
+                height: 100vh;
+                background: #ED254E;
+                top: 80px;
+                left: -100%;
+                text-align: center;
+                transition: all .5s;
+                z-index: 10;
+            }
+
+            nav ul li {
+                display: block;
+                margin: 50px 0;
+                line-height: 30px;
+            }
+
+            nav ul li a {
+                font-size: 20px;
+            }
+
+            a:hover,
+            a.active {
+                background-color: none;
+                color: darkslateblue;
+            }
+
+            #check:checked~ul {
+                left: 0;
+            }
+
+            .grid-wrapper {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(2, minmax(100px, 200px));
+                grid-gap: 1rem;
+                grid-auto-flow: dense;
+            }
+
+            .grid-item {
+                padding: 3rem;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        /* NAVBAR END*/
+    </style>
+</head>
+
+<body>
+    <section class="Form my-4 mx-5 margin-right: 6vw" style="padding-top: 12vh;">
+        <div class="container">
+
+
+            <div class="row no-gutters">
+                <div class="col-lg-5">
+                    <img src="https://cdn.pixabay.com/photo/2020/07/06/17/43/learn-5377778_1280.png" class="img-fluid"
+                        id="logImg" alt="LogIn-Image" width="80%" style="padding-top: 100px; padding-left: 100px;">
+                </div>
+
+                <div class="col-lg-7  pt-5">
+                    <h1 class="font-weight-bold py-3">Welcome to</h1>
+                    <h2 class="py-1">Western Sydney eLibrary</h2>
+
+                    <h3 style="padding-bottom: 40px;">
+                        <br>
+                        We are a generic university & this is an eLibrary made by an awesome group we hired.
+                    </h3>
+
+                    <div style="padding-bottom: 20px;">
+                        <p class="mb-20">Student? <a href="/users/login">Student Login</a> here</p>
+                        <p class="mb-20">Staff Member? <a href="/staff/staffLogin">Staff Login</a> here</p>
+                        <p class="mb-20">Administrator? <a href="/admin/adminLogin">Administrator Login</a> here</p>
+                        <p class="mb-20">Don't have an account?<a href="/users/register"> Register </a>here</p>
+                    </div>
+                </div>
+            </div>
+    </section>
+</body>

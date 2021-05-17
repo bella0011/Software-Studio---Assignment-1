@@ -1,0 +1,17 @@
+﻿<script>
+    $(document).ready(function () {
+        $('header').empty();
+        $('footer').empty();
+    });
+</script>
+<h2> <%= bookRequest.title %> </h2>
+<img src="<%= bookRequest.coverImagePath %>" />
+<div> Author: <%= bookRequest.author %> </div>
+<div> Publish Date: <%= bookRequest.publishDate.toDateString() %> </div>
+<div> Page Count: <%= bookRequest.pageCount %></div>
+<div> Description: <%= bookRequest.description %></div>
+
+
+<a href="/bookRequests/<%=bookRequest.id%>/edit"> Edit
+</a>
+<%- include('../partials/deleteForm', { url: `/bookRequests/${bookRequest.id}` }) %>
