@@ -54,6 +54,10 @@ router.get('/admin/staffBookRequests', (req, res) => res.render('admin/staffBook
     name: req.user.name
 }))
 
+router.get('/admin/adminSearch', (req, res) => res.render('admin/adminSearch', {
+    
+}))
+
 
 
 //------------------------------ Staff ------------------------------------------------------//

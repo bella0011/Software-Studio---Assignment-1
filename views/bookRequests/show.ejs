@@ -295,41 +295,45 @@
 <section class="Form my-4 mx-5 margin-right: 6vw" style="padding-top: 15vh;">
     <div class="container">
         <div class="row no-gutters">
-
-            <div class="col-lg-5  px-5 pt-5 pb-5">
-                <img src="<%= bookRequest.coverImagePath %>" />
+            
+            <div class="col-lg-5  px-5 pt-5 pb-5" >
+                <img src="<%= bookRequest.coverImagePath %>" width="300px" />
             </div>
 
-            <div class="col-lg-8  px-5 pt-5">
-                <h1 class="font-weight-bold py-3"> <%= bookRequest.title %> </h1>
+            <div class="col-lg-7  px-5 pt-5" style="padding-top: 20px">
+                <h1 class="font-weight-bold py-3" > <%= bookRequest.title %> </h1>
 
-                <div class="form-row">
+                <div class="form-row" style="padding-top: 20px">
                     <div> Author: <%= bookRequest.author %> </div>
                 </div>
-                <div class="form-row">
+                <div class="form-row" style="padding-top: 5px">
                     <div> Publish Date: <%= bookRequest.publishDate.toDateString() %> </div>
                 </div>
-                <div class="form-row">
+                <div class="form-row" style="padding-top: 5px">
                     <div> Page Count: <%= bookRequest.pageCount %></div>
                 </div>
-                <div class="form-row">
+                <div class="form-row" style="padding-top: 5px">
                     <div>Description: <%= bookRequest.description %> </div>
                 </div>
-                <div class="form-row">
+                <div class="form-row" style="padding-top: 5px">
                     <a href="/bookRequests/<%=bookRequest.id%>/edit"> Edit </a>
                 </div>
 
                 <div class="form-row" style="padding: 20px">
                     <div style="padding: 20px">
-                        <form method="POST" class="d-inline" action="<%- include('../partials/deleteForm', { url: `/bookRequests/${bookRequest.id}` }) %>">
-                            <input class="btn btn-xs btn-danger" type="submit" value="Delete">
-                        </form>
+                        <%- include('../partials/deleteForm', { url: `/bookRequests/${bookRequest.id}` }) %>
+                            
                     </div>
 
                 </div>
             </div>
         </div>
 </section>
+
+
+
+
+
 
 <!-- <h2> <%= bookRequest.title %> </h2>
 <img src="<%= bookRequest.coverImagePath %>" />
