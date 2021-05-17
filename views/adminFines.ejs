@@ -1,28 +1,32 @@
-﻿<script>
+<script>
     $(document).ready(function () {
         $('header').empty();
         $('footer').empty();
     });
 </script>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./src/app.css">
 
-    <title>Add Book</title>
+    <title>Search Books</title>
     <style>
         * {
             padding: 0;
-            margin-left: 0;
+            margin: 0;
             box-sizing: border-box;
             font-size: 1em;
         }
 
-        /* NAVBAR BEGIN*/
-        nav {
+                /* NAVBAR BEGIN*/
+                nav {
             background-color: #011936;
             height: 82px;
             width: 100%;
@@ -239,30 +243,18 @@
     </ul>
 </nav>
 
-
-<section class="Form my-4 mx-5" style="padding-top: 10vh">
-    <div class="container">
-        <div class="row no-gutters">
-
-            <div class="col-lg-5  px-5 pt-5">
-                <img src="https://img.icons8.com/ios/452/add-book.png" class="img-fluid" id="regImg" alt="Register-Image" width="300" style="padding-top: 100px;">
-            </div>
-            <div class="col-lg-7  px-5 pt-5">
-                <h1 class="font-weight-bold py-3">New Book</h1>
-
-                <form action="/books" method="POST">
-                        <div class="form-row">
-                        <%- include('_form_fields') %>
-                        </div>
-                        <div class="form-row">
-                            <a href="/books"> Cancel </a>
-                        </div>
-                        <div class="form-row">
-                            <button type="submit" class="btn1 mt-3 mb-5"> Create </button>
-                        </div>
-                </form>
-
+<body>
+    <section class="my-10 mx-10" style="padding-top: 10vh">
+        <div class="container">
+            <div class="no-gutters">
+                <div>
+                    <h2 style="font-family: 'Courier New', Courier, monospace;"> Fines </h2>
+                </div>
+                <div class="table-refresh" data-url="/finedata">
+                </div>
             </div>
         </div>
-        </div>
-</section>
+     </section>
+        <script src="./src/app.js"></script>
+</body>
+</html>
