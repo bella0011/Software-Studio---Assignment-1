@@ -62,7 +62,7 @@ router.get('/:id', async (req, res) => {
         const bookRequest = await Book.findById(req.params.id)
         res.render('bookRequests/show', { bookRequest: bookRequest })
     } catch {
-        console.log('hello')
+        //console.log('hello')
         res.redirect('/admin/staffBookRequests')
     }
 })
