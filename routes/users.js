@@ -33,6 +33,11 @@ router.post('/register', (req, res) => {
         errors.push({ msg: 'Password do not match'})
     }
 
+    //Check password length
+    if (password.length < 6) {
+        errors.push({ msg: 'Password should be at least 6 characters' })
+    }
+
     // Check Whether for requires not filled
     if(errors.length > 0) {
         res.render('users/register', {
